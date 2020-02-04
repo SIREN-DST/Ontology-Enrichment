@@ -1,0 +1,124 @@
+Introduction
+Viruses, worms, Trojans, and bots are all part of a class of software called "malware." Malware is short for "malicious software," also known as malicious code or "malcode." It is code or software that is specifically designed to damage, disrupt, steal, or in general inflict some other "bad" or illegitimate action on data, hosts, or networks.
+
+There are many different classes of malware that have varying ways of infecting systems and propagating themselves. Malware can infect systems by being bundled with other programs or attached as macros to files. Others are installed by exploiting a known vulnerability in an operating system (OS), network device, or other software, such as a hole in a browser that only requires users to visit a website to infect their computers. The vast majority, however, are installed by some action from a user, such as clicking an email attachment or downloading a file from the Internet.
+
+Some of the more commonly known types of malware are viruses, worms, Trojans, bots, ransomware, backdoors, spyware, and adware. Damage from malware varies from causing minor irritation (such as browser popup ads), to stealing confidential information or money, destroying data, and compromising and/or entirely disabling systems and networks.
+
+In addition to damaging data and software residing on equipment, malware has evolved to target the physical hardware of those systems. Malware should also not be confused with defective software, which is intended for legitimate purposes but contains errors or "bugs."
+
+Classes of Malicious Software
+Two of the most common types of malware are viruses and worms. These types of programs are able to self-replicate and can spread copies of themselves, which might even be modified copies. To be classified as a virus or worm, malware must have the ability to propagate. The difference is that a worm operates more or less independently of other files, whereas a virus depends on a host program to spread itself. These and other classes of malicious software are described below.
+
+
+Ransomware
+Ransomware is a type of malicious software that threatens to publish the victim's data or perpetually block access to it unless a ransom is paid. While some simple ransomware may lock the system in a way that is not difficult for a knowledgeable person to reverse, more advanced malware uses a technique called cryptoviral extortion, which encrypts the victim's files, making them inaccessible, and demands a ransom payment to decrypt them.
+
+
+Viruses
+A computer virus is a type of malware that propagates by inserting a copy of itself into and becoming part of another program. It spreads from one computer to another, leaving infections as it travels. Viruses can range in severity from causing mildly annoying effects to damaging data or software and causing denial-of-service (DoS) conditions. Almost all viruses are attached to an executable file, which means the virus may exist on a system but will not be active or able to spread until a user runs or opens the malicious host file or program. When the host code is executed, the viral code is executed as well. Normally, the host program keeps functioning after it is infected by the virus. However, some viruses overwrite other programs with copies of themselves, which destroys the host program altogether. Viruses spread when the software or document they are attached to is transferred from one computer to another using the network, a disk, file sharing, or infected email attachments.
+
+Worms
+Computer worms are similar to viruses in that they replicate functional copies of themselves and can cause the same type of damage. In contrast to viruses, which require the spreading of an infected host file, worms are standalone software and do not require a host program or human help to propagate. To spread, worms either exploit a vulnerability on the target system or use some kind of social engineering to trick users into executing them. A worm enters a computer through a vulnerability in the system and takes advantage of file-transport or information-transport features on the system, allowing it to travel unaided. More advanced worms leverage encryption, wipers, and ransomware technologies to harm their targets.
+
+Trojans
+A Trojan is another type of malware named after the wooden horse that the Greeks used to infiltrate Troy. It is a harmful piece of software that looks legitimate. Users are typically tricked into loading and executing it on their systems. After it is activated, it can achieve any number of attacks on the host, from irritating the user (popping up windows or changing desktops) to damaging the host (deleting files, stealing data, or activating and spreading other malware, such as viruses). Trojans are also known to create backdoors to give malicious users access to the system. Unlike viruses and worms, Trojans do not reproduce by infecting other files nor do they self-replicate. Trojans must spread through user interaction such as opening an email attachment or downloading and running a file from the Internet.
+
+Bots
+"Bot" is derived from the word "robot" and is an automated process that interacts with other network services. Bots often automate tasks and provide information or services that would otherwise be conducted by a human being. A typical use of bots is to gather information, such as web crawlers, or interact automatically with Instant Messaging (IM), Internet Relay Chat (IRC), or other web interfaces. They may also be used to interact dynamically with websites.
+
+Bots can be used for either good or malicious intent. A malicious bot is self-propagating malware designed to infect a host and connect back to a central server or servers that act as a command and control (C&C) center for an entire network of compromised devices, or "botnet." With a botnet, attackers can launch broad-based, "remote-control," flood-type attacks against their target(s).
+
+In addition to the worm-like ability to self-propagate, bots can include the ability to log keystrokes, gather passwords, capture and analyze packets, gather financial information, launch Denial of Service (DOS) Attacks, relay spam, and open backdoors on the infected host. Bots have all the advantages of worms, but are generally much more versatile in their infection vector and are often modified within hours of publication of a new exploit. They have been known to exploit backdoors opened by worms and viruses, which allows them to access networks that have good perimeter control. Bots rarely announce their presence with high scan rates that damage network infrastructure; instead, they infect networks in a way that escapes immediate notice.
+
+Advanced botnets may take advantage of common internet of things (IOT) devices such as home electronics or appliances to increase automated attacks. Crypto mining is a common use of these bots for nefarious purposes.
+
+Distribution Channels for Malware
+Advanced malware typically comes via the following distribution channels to a computer or network:
+
+Drive-by download—Unintended download of computer software from the Internet
+Unsolicited email —Unwanted attachments or embedded links in electronic mail
+Physical media—Integrated or removable media such as USB drives
+Self propagation—Ability of malware to move itself from computer to computer or network to network, thus spreading on its own
+For a complete listing of malware tactics from initial access to command and control, see MITRE Adversarial Tactics, Techniques, and Common Knowledge.
+
+
+Ten Best Practices for Combating Malware
+
+Implementing first-line-of-defense tools that can scale, such as cloud security platforms
+Adhering to policies and practices for application, system, and appliance patching
+Employing network segmentation to help reduce outbreak exposures
+Adopting next-generation endpoint process monitoring tools
+Accessing timely, accurate threat intelligence data and processes that allow that data to be incorporated into security monitoring and eventing
+Performing deeper and more advanced analytics
+Reviewing and practicing security response procedures
+Backing up data often and testing restoration procedures—processes that are critical in a world of fast-moving, network-based ransomware worms and destructive cyber weapons
+Conducting security scanning of microservice, cloud service, and application administration systems
+Reviewing security systems and exploring the use of SSL analytics and, if possible, SSL decryption
+
+Additional Terms
+Advanced Persistent Threats (APT)
+A set of stealthy and continuous computer hacking processes, often orchestrated by a person or persons targeting a specific entity. An APT usually targets either private organizations, states, or both for business or political motives. APT processes require a high degree of covertness over a long period of time. The "advanced" process signifies sophisticated techniques using malware to exploit vulnerabilities in systems. The "persistent" process suggests that an external command and control system is continuously monitoring and extracting data from a specific target. The "threat" process indicates human involvement in orchestrating the attack.
+
+Adware
+Software that generates revenue for its developer by automatically generating online advertisements in the user interface of the software or on a screen presented to the user during the installation process. The software may generate two types of revenue: one is for the display of the advertisement and another on a "pay-per-click" basis if the user clicks on the advertisement.
+
+Backdoor
+An undocumented way of accessing a system, bypassing the normal authentication mechanisms. Some backdoors are placed in the software by the original programmer and others are placed on systems through a system compromise, such as a virus or worm. Usually, attackers use backdoors for easier and continued access to a system after it has been compromised.
+
+Bootkit
+A malware variant that modifies the boot sectors of a hard drive, including the Master Boot Record (MBR) and Volume Boot Record (VBR). Adversaries may use bootkits to persist on systems at a layer below the operating system, which may make it difficult to perform full remediation unless an organization suspects one was used and can act accordingly.
+
+Browser Hijacker
+Software that modifies a web browser's settings without a user's permission to inject unwanted advertising into the user's browser. A browser hijacker may replace the existing home page, error page, or search engine with its own. These are generally used to force hits to a particular website, increasing its advertising revenue. This software often comes in the form of a browser toolbar and is received through an email attachment or file download.
+
+Crimeware
+A class of malware designed specifically to automate cybercrime. Crimeware (distinct from spyware and adware) is designed to perpetrate identity theft through social engineering or technical stealth in order to access a computer user's financial and retail accounts for the purpose of taking funds from those accounts or completing unauthorized transactions that enrich the cyberthief. Alternatively, crimeware may steal confidential or sensitive corporate information.
+
+Denial of Service (DOS) Attacks
+Malicious attempts by one or more people to cause the victim, site, or node to deny service to its customers.
+
+Executable File
+A computer file that contains a sequence of instructions to run an automatic task when the user clicks the file icon or when it is launched via a command.
+
+Exploit
+A piece of software, a command, or a methodology that attacks a particular security vulnerability. Exploits are not always malicious in intent—they are sometimes used only as a way of demonstrating that a vulnerability exists. However, they are a common component of malware.
+
+Instant Messaging
+Applications for personal or business communication that are built around the concept of online presence detection to determine when an entity can communicate. These applications allow for collaboration via text chat, audio, video or file transfer.
+
+Internet Relay Chat
+A system for chatting that involves a set of rules and conventions and client/server software.
+
+Keyloggers
+The action of recording (logging) the keys struck on a keyboard, typically covertly, so that the person using the keyboard is unaware that their actions are being monitored. Data can then be retrieved by the person operating the logging program. A keylogger can be either software or hardware.
+
+Malicious Crypto Miners
+Software that uses system resources to solve large mathematical calculations that result in some amount of cryptocurrency being awarded to the solvers. There are two ways that mining can be performed: either with a standalone miner or by leveraging mining pools. Mining software relies on both CPU resources and electricity. Once a system has a miner dropped on it and it starts mining, nothing else is needed from an adversary perspective. The miner generates revenue consistently until it is removed.
+
+Malicious Mobile Code
+Software with malicious intent that is transmitted from a remote host to a local host and then executed on the local host, typically without the user’s explicit instruction. Popular languages for malicious mobile code include Java, ActiveX, JavaScript, and VBScript.
+
+Payload
+The part of the data transmission that could also contain malware such as worms or viruses that perform the malicious action: deleting data, sending spam, or encrypting data. While packet headers indicate source and destination, actual packet data is referred to as the "payload."
+
+Point of Sale (POS) Malware
+A type of malicious software that is used by cybercriminals to target point of sale (POS) terminals with the intent to obtain credit card and debit card information by reading the device memory from the retail checkout point of sale system. POS malware is released by hackers to process and steal transaction payment data. The card information, which is usually encrypted and sent to the payment authorization, is not encrypted by POS malware but sent to the cybercriminal.
+
+Potentially Unwanted Programs or Applications
+Software that a user may perceive as unwanted. This may include adware, spyware, or browser hijackers. Such software may use an implementation that can compromise privacy or weaken the computer's security. Companies often bundle a wanted program download with a wrapper application and may offer to install an unwanted application, in some cases without providing a clear opt-out method.
+
+Rootkit
+Programs that hide the existence of malware by intercepting (i.e., "Hooking") and modifying operating system API calls that supply system information. Rootkits or rootkit enabling functionality may reside at the user or kernel level in the operating system or lower to include a hypervisor, master boot record, or the system firmware. Adversaries may use rootkits to hide the presence of programs, files, network connections, services, drivers, and other system components. Rootkits have been seen for Windows, Linux, and Mac OS X systems.
+
+Social Engineering
+Anytime perceived trust is used to elicit information from groups or individuals, it is referred to as "social engineering." Examples include individuals who call or email a company to gain unauthorized access to systems or information.
+
+Spyware
+Software that aims to gather information about a person or organization without their knowledge, that may send such information to another entity without the consumer's consent, or that asserts control over a device without the consumer's knowledge.
+
+Web Crawlers
+Programs that systematically browse the internet and index data, including page content and links. These web crawlers help to validate HTML code and search engine queries to identify new web pages or dead links.
+
+Wipers
+A type of destructive malware that contains a disk wiping mechanism such as the ability to infect the master boot record with a payload that encrypts the internal file table. Wipers render the attacked process or component useless to the end user.

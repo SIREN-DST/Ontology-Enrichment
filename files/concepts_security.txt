@@ -1,0 +1,557 @@
+Media Disposal Control Compliant Organization
+Reputation
+Locked Doors After Working Hours Policy
+Temperature Surveillance System
+Personal Firewall
+Vulnerability In Code
+Data Breach Notifciation Policy
+Attribute
+Operational Procedures Policy
+Compliance Control Compliance Organization
+Asset Importance
+Network Services Agreement Control Compliant Organization
+Humidity Surveillance System
+Login Name
+Access Control Model
+Restrictive Granting Of Access Rights Policy
+Test System
+Server Host
+Emergency Recovery Control Compliant Organization
+Wired Network
+Air Conditioning Control Compliant Server Room
+Change Control Procedures Policy
+Access System C
+Human Behavior Guidelines Control Compliant Control Organization
+Door
+Discrete Logarithm
+Malformed Input
+Removable Media Control Compliant Organization
+Virus
+Location
+Lockable Depository Outside Building
+Information Passing Policy
+Certificate Data
+E-Mail
+Movable Asset
+External Staff Control Compliant Organization
+Electric Installation Policy
+Router
+Shell Injection
+Bacteria
+Digital Signature Data
+Message Digest
+Vulnerability
+Biometric Authentication System
+Cryptography Model
+DES
+Database Management System
+Library Wrapper
+Emergency Recovery Policy
+User Identification Authentication Control Compliant Organization
+Mobile Device Control Compliant Organization
+Network Logging And Monitoring Control Compliant Organization
+Uninterruptible Power Supply Unit A
+Denial Of Service
+Stationary Data
+Non-Executable Memory
+Privacy
+Threat Source
+Identification Software
+Network Segregation Control Compliant Organization
+Internet Infrastructure Denial Of Service
+Lightning Arrester Control Compliant Building
+Eavesdropping
+Likert Scale
+Appropriate Contacts Control Compliant Control
+Backup File
+File
+Cabling Security Policy
+Role
+Fire Safety Control Compliant Organization
+Fire Extinguisher Control Compliant Section
+Function Pointer
+Sectionwith3Section Connector
+Canary-Based Tool
+Safety Door Control Complaint Section
+Anti Virus Control Compliant Mobile Device
+Emergency Planning Control Compliant Organizaton
+Security Relevant Patches and Updates Control Compliant Organization
+System Capacity Monitoring Control Compliant Organization
+Security Management Framework Policy
+PKI (Public Key Infrastructure)
+Intrusion Alarm System Control Compliant Section
+Outsourcing Control Compliant Organization
+Building
+Network Monitoring Software
+Security Training Policy
+Installation Media
+Information Passing Control Compliant Organization
+Internet Filter
+Entry Checkpoint
+Program Source Code File
+Countermeasure By Goal
+Emergency Substitute Device
+Firewall Policy
+Media And Communication Scanning Control Compliant Organization
+Threat Origin
+Disciplinary Process Control Compliant Organization
+DNS Hacking
+PDA
+Threat By Technology
+Top Level Threat
+Equipment Location Control Compliant Building
+Security Incidents Procedures Control Compliant Organization
+PC, Internet and Email Regulation Policy
+Data Backup Storage Control Compliant Organization
+User
+Fingerprint
+Operating System
+Monitoring
+Fire Suppression System B
+Database Data File
+Insecure Default Setting Unchanged
+Encryption Software
+Human Resource Development Control Compliant Organization
+Host On Intranet
+Shredder
+Host On Internet
+Removable Media Policy
+Change Control Procedures Control Compliant Control
+Active Attack
+Material Storing Control Compliant Building
+Data Backup Storage Policy
+Control Implementation Effectiveness
+Physical Media Transit Control Compliant Organization
+Data Disposal Control Compliant Organization
+RIPE-MAC
+Stream Cipher
+Automatic Locking Control Compliant Computer
+Sectionwith2Section Connector
+Fire Extinguisher Control Compliant Server Room
+CPU
+Ping Of Death
+Organization
+Fire Extinguisher
+Randomized Instruction
+Availability
+Malicious Code
+Data Encryption Policy
+Internet Regualtion Control Compliant Organization
+Fire Suppression System A
+Physical Media Transit Policy
+Asset Life Cycle Phase
+Session Time Policy
+Data Breach Notification Control Compliant Organization
+Fire Extinguisher A
+Magnetic Tape
+Server Room
+Dongle
+Misuse Detection System
+Program File
+Contract
+Asset Threat Probability
+Reception Regulation Policy
+Scale
+Sectionwith1Section Connector
+Configuration File
+Security Relevant Patches And Updates Policy
+Standard Control
+External Connections Policy
+Configuration Data Hard Copy
+Security Training Control Compliant Organization
+Authentication
+Recovery
+Countermeasure By Data
+Document
+Virus Infection Control Compliant Organization
+Secure Log-on Control Compliant Organization
+Human
+Backup Software
+Clear Desk Control Compliant Organization
+Behavioural Biometric Credential
+Control Type
+Alarm System C
+Systems Testing And Acquisition Policy
+Settings
+Hardware
+Automatic Locking Control Compliant Mobile Device
+Sensitive Data
+Software
+Host Compromising
+Compliance Policy
+Encryption of Confidential Data Control Compliant Organization
+Section
+Smoke Detector
+Wireless Access Point
+Retina
+Private Key
+Person
+Theft Protection Software
+Trusted Network
+Data Deletion Software
+Attacker Profile
+Human Resource Development Policy
+Mobile Code Blocking Control Compliant Control
+Data Backup Policy A
+Sensitive Information Control Compliant Organization
+External Staff Policy
+Unconnected Host
+Secure Network Communication
+Has Countermeasure
+Receiver
+HTML Script Injection
+Processing Validation Control Compliant Computer
+Stack Overflow
+Symmetric Algorithm
+Data
+Network Component
+Data Backup Storage Policy A
+Information Security Independent Review Policy
+Low Level Threat
+Internet Filter Control Compliant Computer
+Message Digest Data
+Secure Areas Control Compliant Building
+Access System B
+Automatic Locking Software
+Cabling Security Control Compliant Organization
+Bypassing Intended Controls
+User Profiles
+Maintenance Contract Control Compliant IT Component
+Business Continuity Policy
+Clock Synchronization Control Compliant Organization
+Integrity
+Window
+Technical Vulnerabilities Control Compliant Organization
+Language
+Level
+Defense Strategy
+Lightning Arrester A
+Data Disposal Policy
+Port Security Diagnostic And Configuration Control Compliant Organization
+External Connections Authentication Control Compliant Organization
+Side Channel Attack
+Technology
+Information Security Risk Awareness Control Compliant Organization
+Notebook
+Safety Door
+Clear Desk Policy A
+Confidentiality
+Emergency Planning Policy
+Intra-procedural CF
+Power Source
+Transaction Security And Virus Protection Software A
+Risk Assessment Control Compliance Organization
+SQL Injection
+Factorisation
+Kensington Lock
+Worm
+Assets Control Compliant Organization
+Theft Protection Control Compliant Mobile Device
+External Employment Contract
+Personal Firewall Control Compliant Computer
+Electronic Commerce Services Control Compliant Organization
+Access System
+Temperature Surveillance Control Compliant Server Room
+Data Check Software
+Bastion Host
+PC and Internet Control Compliant Organization
+Transaction Security And Virus Protection Software B
+Clear Desk Policy B
+Exploitation:Degree:Relation
+Security Relevan t Patches And Updates Policy B
+Product
+Air Condition System A
+Race Condition
+Local Host
+Antivirus Software Control Compliant Computer
+Visitors Contro Compliant Section
+Policy
+Electronic Token
+Data Backup Policy
+Environmental Conditions Monitoring Control Compliant Section
+One-Time Password
+Security Attribute
+Data Archiving Control Compliant Organization
+X.509
+Service Contract
+HTTP Data
+Backup Storage In-House Control Compliant Backup Media
+Lockable Depository within the Building
+Auditing
+Lexical Analysis
+Network-Based Intrusion Detection System
+Host-Based Intrusion Detection System
+Online Encryption Software
+Goal
+Encryption Key
+Restrictive Granting Of Access Rights Policy A
+Encryption Hardware
+Data Backup Policy C
+WLAN Policy
+By Usage Frequency
+Physical Biometric Credential
+Stack Return Address
+Needs Code Annotations
+Symmetric Key
+Cloud Service Contract
+Firewall Regulation Control Compliant Organization
+Packet Filter Firewall
+Has Threat
+Environmental Conditions Monitoring Software
+Mobile Device Regulation Policy
+Impersonation
+Alarm System B
+Internet Regulation Policy A
+Gait
+Stack
+Teleworkstation
+Documented Operational Procedures Control
+Network Layer Packet
+Nary Relation
+Inter-procedural CF
+Single Sign On System
+Control
+Physical Access Key Control Compliant Organization
+Alarm System A
+Internal Data
+Password Manager
+Trust
+Printer
+Application Layer Packet
+Data Security Handbook Control Compliant Organizaton
+Tangible Asset
+Security Relevan t Patches And Updates Policy C
+Compiler Patch
+Security Relevan t Patches And Updates Policy A
+Facial Pattern Recognition
+Software Application Evaluation Policy
+Port Security And Configuration Policy
+New Facilities Authorization Control Compliant Organization
+Intrusion Detection System
+Heat
+Delivery Area
+Private Software and Hardware Control Compliant Organization
+Network Routing Control Compliant Organization
+Packet Mistreatment
+Prevention
+Physical Perimeter Protection Control Compliant Building
+Material Storing Policy
+Loading Area
+Switch
+Spoofing
+ISO27001
+Staff Employment Policy
+Data Encryption Software Control Compliant Computer
+Routing Table Poisoning
+Password
+Smartphone
+Firewall
+Unauthorized Use Prevention Control Compliant Organization
+Transaction Security And Virus Protection Software
+Recording of Configuration Data Policy
+C Language Dialect
+Standard
+Fire Suppression Control Compliant Section
+Internet Regulation Policy B
+Processing Validation Policy
+Countermeasure
+Cryptography
+Configuration Data Digital Format
+Public Data
+Backup Media
+X.509Certificate Data
+OS
+Internet Regulation Policy
+Internal Role
+Security Management Framework Control Compliant Organization
+IP Packet
+C-Code Analysis
+Uninterruptible Power Supply Unit B
+Masquerading
+Target Connected To Network
+Information Security Independent Review Control Compliant Organization
+Maintenance Contract
+Internet Gateway
+Retina Recognition
+USB Stick
+Workstation Access Rights Policy
+Electric Installation Control Compliant Organization
+Locked Doors Control Compliant Organization
+Uninterruptible Power Supply Unit
+Backup Storage Outside Control Compliant Backup Media
+Physical Threat
+(Intrusion) Alarm System
+Mutlifunctional Firewall
+Data In Transit
+Visible Identification Control Compliant Building
+Position Responsibilities and Deputizing Control Compliant Organization
+System
+Model
+Configuration Data Control Compliant Organization
+Physical Key Distribution Policy
+Biometric Token
+Encryption of Confidental Data Policy
+Threat By Goal
+Signature Algorithm
+Entry Checkpoint A
+Site
+Data Secrecy Control Compliant Organization
+Lightning Arrester
+Section Connector
+External Role
+Voice
+Immovable Asset
+Server
+Kensignton Lock Control Compliant Computer
+Data Backup Control Compliant Organization
+Fingerprint Recognition
+Boolean Scale
+Office User
+Clear Desk Policy
+Firewall B
+Cryptographic Hash Function
+Teleworking Control Compliant Organization
+Entry Checkpoint B
+Intangibe Asset
+Firewall Control Compliant Computer
+System Image
+Data Archiving Policy
+Service Contract Policy
+Networking Policy
+Access Control
+Electronic Messaging Protection Control Compliant Organization
+Log Monitoring
+Fire Suppression System
+Access Log Book
+Mobile Device
+CO2 Fire Extinuguisher
+Password Regulation Control Compliant Computer
+Heap
+Anomaly Detection System
+Virus Infection Emergency Regulation Policy
+Bared Window Control Compliant Section
+Physical Token
+Host On Wired Network
+Session Time Control Compliant Organization
+Removable Hard Disk
+Information Security Policy Document Control Compliant Organization
+Application Evaluation Control Compliant Organization
+Syntax Semantic Analysis
+Smoke Detector Control Compliant Section
+Iris Recognition
+Password Complaint Check
+Security Hardware
+Data Aliasing
+IT Component
+Bared Window
+S-HTTP
+Passive Attack
+Data On Volatile Media
+WKOIT Sicherheitshandbuch
+Has Mechanism Type
+Social Network Policy
+Security Relevant Updates and Testing Control Compliant Organization
+Audit Logging And Monitoring Control Compliant Organization
+Position Responsibility Policy
+Process
+Restrictive Granting Of Access Rights Policy B
+Cloud Computing Policy
+Hand Measurement
+Transparent Encryption Software
+Fire Safety and Training Policy
+Systems Testing And Acquisition Control Compliant Organization
+Firewall A
+Encryption Algorithm
+Application Evaluation Policy
+Private Software and Hardware Use Policy
+Code Injection
+Compliant Control
+System Capacity Monitoring Software
+Deflection
+Countermeasure By Technology
+Delivery And Loading Areas Control Compliant Building
+Login System
+Clock Synchronization Software
+Air Condition System
+Standard Door
+Server Rack
+Teleworking Policy
+Correctness
+Organizational Records Protection Control Compliant Organization
+User Registration And De-Registration Control Compliant Organization
+Access System A
+WLAN Control Compliant Organization
+Access Control Regulation Policy
+Block Cipher
+Message Authentication Code Data
+Physical Perimeter Protection Policy
+CD and DVD
+Public-Key Encryption
+Networked Host
+Secure Areas Policy
+Digital Signing
+Uninterruptible Power Supply Control Compliant Server Room
+Type Conversion Information
+Data Backup Storage Policy B
+Threat
+Water Alarm System Control Compliant Section
+Brute Force Attack
+Cookie
+Audit Logging And Monitoring Policy
+Social Network Control Compliant Organization
+Risks Policy
+Steganography
+Third Party Service Management Control Compliant Organization
+Access Control Regulation Control Compliant Organization
+Asset
+Safety Door A
+Water Alarm System
+Restrictive Granting of Access Rights Control Compliant Organization
+Checklist
+Environmental Conditions Monitoring Control Compliant Server Room
+Lockable Depository
+Countermeasure Protects Goal Of Asset Through Type
+Intranet
+Key Management
+Air Condition System B
+Access Regulation Control Compliant Building
+Lightning Arrester B
+Disciplinary Process Policy
+Safety Door B
+Inter-procedural DF
+Network
+Has Asset
+Assets Control Policy
+Data Backup Strategy and Backup Media Control Compliant Organization
+Data Secrecy Policy
+Employment Contract
+Placement Control Compliant IT Component
+Appropriate Contacts Policy
+Detection
+Equipment Sitting And Protection Policy
+Cloud Computing Control Compliant Organization
+Iris
+Complex Firewall
+Key Exchange
+Tablet
+Workstation
+Business Continuity Management Process Control Compliant Organization
+Offline Encryption Software
+Sender
+Activities Monitoring Software
+Fire Extinguisher B
+Exchange Agreements Control Compliant Organization
+Intra-procedural DF
+By Detection Method
+Policy Compliance
+Host
+Guessing Attack
+Information Security Policy
+Threat Apriori Probability
+Technical Vulnerabilities Policy
+Physical Biometric Recognition
+Data Backup Policy B
+Host On Wireless Network
+Computer
+Raised Floor Control Compliant Level
+Automatic Equipment Identification Control Compliant Organization
