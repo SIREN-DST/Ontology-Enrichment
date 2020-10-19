@@ -8,4 +8,4 @@ For doc2vec comparison, we use the [pre-trained Doc2Vec model](https://ibm.ent.b
 
 Alternatively, if the article is on one of the terms in the dataset, we still consider it and write it to the corpus.
 
-For extraction of articles from Wikipedia, we forked the WikiExtractor repository given [here](https://github.com/attardi/wikiextractor).
+For extraction of articles from Wikipedia, we used and edited from the excellent [WikiExtractor repository](https://github.com/attardi/wikiextractor) made by [Giuseppe Attardi](https://github.com/attardi).
