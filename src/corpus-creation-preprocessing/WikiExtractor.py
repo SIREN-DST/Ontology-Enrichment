@@ -175,8 +175,8 @@ options = SimpleNamespace(
     doc2vec = '',
 
     ##
-    # Path to concepts parsed from ontology
-    concepts = '',
+    # Path to related terms extracted from DBPedia
+    dataset_terms = '',
 
 
     ##
@@ -3158,6 +3158,8 @@ def reduce_process(opts, output_queue, spool_length,
 # Minimum size of output files
 minFileSize = 200 * 1024
 
+flatten = lambda l: [item for sublist in l for item in sublist]
+
 def main():
 
     parser = argparse.ArgumentParser(prog=os.path.basename(sys.argv[0]),
@@ -3225,16 +3227,16 @@ def main():
                              " one category. starting with: 1) '#' comment, ignored; 2) '^' exclude; Note: excluding has higher priority than including")
     groupP.add_argument("-d", "--doc2vec", default="/Users/vivek/doc2vec",
                         help="specify the path to doc2vec model that you will be using to filter articles below a certain similarity")
-    groupP.add_argument("-oc", "--ontology_concepts",
-                        help="specify the path to concepts extracted from the dataset")
+    groupP.add_argument("-terms", "--dataset_terms",
+                        help="specify the path to related terms file extracted from DBPedia")
     groupP.add_argument("--doc",
                         help="Specify the base file with which doc2vec similarity comparisons are to be made")
     groupP.add_argument("-t", "--threshold",
                         help="Doc2Vec similarity threshold")
     args = parser.parse_args()
 
-    if not args.doc or not args.ontology_concepts or not args.doc2vec or not args.threshold:
-        print ("Not all arguments have been provided, please run `python3 WikiExtractor.py -d <doc2vec_model> --ontology_concepts <concepts_file> --doc <similarity_base_doc> -t <threshold> <input>`")
+    if not args.doc or not args.dataset_terms or not args.doc2vec or not args.threshold:
+        print ("Not all arguments have been provided, please run `python3 WikiExtractor.py -d <doc2vec_model> --dataset_terms <terms_file> --doc <similarity_base_doc> -t <threshold> <input>`")
         exit()
 
     options.keepLinks = args.links
@@ -3245,7 +3247,7 @@ def main():
     options.print_revision = args.revision
     options.min_text_length = args.min_text_length
     options.doc2vec = args.doc2vec
-    options.concepts = args.ontology_concepts
+    options.dataset_terms = args.dataset_terms
     options.threshold = args.threshold
     options.doc = args.doc
     if args.html:
@@ -3347,7 +3349,7 @@ def main():
 
     global topics, model, similarity_base
     
-    topics = open(options.concepts, "r").read().split("\n")
+    topics = list(set(flatten([l.split("\t")[:2] for l in open(options.dataset_terms, "r").read().split("\n")])))
     model = Doc2Vec.load(options.doc2vec)
     similarity_base = preprocessText(open(options.doc, "r").read())
 

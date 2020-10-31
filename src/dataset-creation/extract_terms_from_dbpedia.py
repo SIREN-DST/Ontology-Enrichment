@@ -1,41 +1,44 @@
 ''' 
-    Step 2 of dataset extraction pipeline: Code to extract terms from DBPedia
+    Step 2 of dataset extraction pipeline: Code to extract related terms from DBPedia
     Ensure that the relevant details are entered in config.ini.
     Then, execute by running `python3 extract_terms_from_dbpedia.py`
-    The relations from DBPedia are now stored in a file called `terms_from_dbpedia_<domain_name>.tsv`
+    The terms from DBPedia are now stored in a file called
+     `dbpedia_terms_<domain_name>.tsv` inside `../../files/`
 '''
 
-import configparser
+import configparser, os
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 config = configparser.ConfigParser()
 try:
     config.read('config.ini')
 except:
-    print ("ERROR: No config file. Create a new file called config.ini")
+    print ("ERROR: No config file. Create a new file called config.ini in root folder")
     exit()
 
-try:
-    conceptsName = config['extract_terms_from_dbpedia']['conceptsName']
-except:
-    print ("ERROR: No concepts file specified. Check config.ini")
-    exit()
+# Folder for storing all input & output files
+files_path = os.path.abspath("../../files/") + "/"
+concepts_file = files_path + "concepts_" + domain + ".txt"
 
 try:
+    # Domain of ontology. Used for naming purposes
     domainName = config['DEFAULT']['domain']
 except:
     print ("ERROR: No domain specified. Check config.ini")
     exit()
 
+concepts = open(concepts_file, "r").read().split("\n")
+# Output file used for storing terms extracted from DBPedia
+terms_file = files_path + "dbpedia_terms_" + domainName + ".tsv"
 
-concepts = open(conceptsName, "r").read().split("\n")
-
-def dbpedia_parse(termlist):
+def extract_related_terms_from_DBPedia(termlist):
+    # Obtain related terms such as hypernyms and hyponyms from DBPedia
     final_list = []
     idx = 0
     for termname in termlist:
         tempList = []
         queryWord = "_".join(termname.split(" "))
+        # Make SPARQL query for hypernyms
         sparql = SPARQLWrapper("http://dbpedia.org/sparql")
         sparql.setQuery("""SELECT * WHERE {<http://dbpedia.org/resource/"""+queryWord + """> <http://purl.org/linguistics/gold/hypernym> ?hypernyms .}""")
         idx+=1
@@ -71,6 +74,7 @@ def dbpedia_parse(termlist):
                 name = res.split('/')[-1]
                 tempList.append([termname, name, "Hypernym"])
         
+        # Make SPARQL query for hyponyms
         sparql = SPARQLWrapper("http://dbpedia.org/sparql")
         sparql.setQuery("""SELECT * WHERE {?hypernyms <http://purl.org/linguistics/gold/hypernym> <http://dbpedia.org/resource/"""+queryWord + """> .}""")
         sparql.setReturnFormat(JSON)
@@ -115,8 +119,8 @@ def dbpedia_parse(termlist):
         
     return final_list
 
-dbpedia_terms_unfiltered = dbpedia_parse(concepts)
+dbpedia_terms_unfiltered = extract_related_terms_from_DBPedia(concepts)
 
 string = "\n".join(list(set(" ".join("\t".join(a).lower().split("_")) for a in 
                             [l for l in dbpedia_hypernyms_unfiltered if l[0]!=l[1]])))
-open("terms_from_dbpedia_" + domainName + ".tsv", "w+").write(string)
+open(terms_file, "w+").write(string)
