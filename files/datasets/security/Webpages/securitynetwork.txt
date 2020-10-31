@@ -1,0 +1,115 @@
+Introducing Zero-Trusts
+Google experienced a security breach by China in 2009; thus, Google overhauled
+its network the following year. The security incident was detrimental; therefore, Google
+tasked its engineers to develop a stealthy solution. They called their initiative
+BeyondCorp and, once fully developed, deployed their engineered solution beginning in
+2010 (Osborn et al., 2016). The goal of BeyondCorp was to improve the security posture
+of the entire company. At about the same time, John Kindervag of Forrester Research
+coined the term "Zero-Trust." Kindervag studied and created Zero-Trust for similar
+reasons Google designed BeyondCorp (Moscaritolo, 2011). For both philosophies,
+security incidents were big problems because adversaries had already breached the
+internal networks in many organizations. Although Google's BeyondCorp and
+Kindervag's Zero-Trust formed in the year 2010 timeframe, the term, BeyondCorp, is
+rarely used. Zero-Trust remains the preferred globally recognized term.
+1.1. What is Zero-Trust?
+Zero-Trust, simply stated, is a philosophy. It doesn't come from hardware or
+software, although these components are required to manage the network posture. It
+instructs security practitioners never to trust, always validate (Gilman & Barth 2017). The
+Zero-Trust framework has five trust regions: users, devices, applications, data, and
+network traffic (Bardowell & Lyles, 2020). For Zero-Trust, IT systems do not place
+inherited trust in any of the five trust regions; though, verification for all five trust regions
+is a requirement. In other words, the IT systems must verify the device, its state, and the
+connected user before being allowed access to the network resource (Moscaritolo, 2011).
+Furthermore, access to one network resource does not mean access will be granted to
+other resources. For Zero-Trust, all networks, internal and external, are deemed
+unfriendly.
+1.2. Why is Zero-Trust Important?
+Zero-Trust is a buzzword and a distinct marketing term. Just-In-Time Verified
+Trust is a more substantial definition. However, this research will utilize the name ZeroTrust for this study. This technology is, thus, crucial for many reasons. First,
+
+organizations implementing Zero-Trust collapse adversarial attack surfaces. For example,
+a user logs into an application connected to a data storage server. The user authenticates
+through an Identity and Access Management (IAM) system and performs work activity
+then logs out. Upon logout, all IT services to the application and storage server shut
+down, and the attack surface closes. Even in a hostile network, lateral network traffic
+ceases, causing the adversary to become frustrated.
+Second, the Zero-Trust philosophy is essential when migrating to cloud-based
+environments. With most organizations, the internal network perimeter has expanded into
+the cloud; consequently, the security perimeter has disappeared as end-users have become
+dependent on cloud services like Microsoft O365. The majority of organizations have
+moved or will move a portion of their IT services to a cloud-based platform by 2021
+(Shah, 2018). Therefore, a Zero-Trust implementation is vital for organizations to
+safeguard their data and applications, especially if they embrace the seven-layered
+security model with the Zero-Trust framework.
+Last, the Zero-Trust framework lays the foundation for a faster, more robust
+security posture. Zero-Trust can replace traditional VPN access. For example, in a
+conventional network, a device and user must authenticate to the VPN before they are
+allowed access to applications and data on enterprise networks. For Zero-Trust, users and
+devices authenticate to the web apps and data without inheriting any other access rights to
+other IT resources. This direct access method is faster because the users will not
+authenticate to inherited services, only the specific IT system.
+1.3. Problem with Zero-Trust
+Due to its comprehensive approach to IT security, there are several issues with
+Zero-Trust that organizations must define before implementing the technology. Those
+issues include different classes of users, devices, applications, and data storage. For users,
+organizations will have on-site users, remote users, contractors, customers, vendors, and
+other third-party organizations requiring specific access. Then, organizations will have to
+look at laptops and tablets for compliance. For most organizations, device control will be
+challenging as organizations can only control employee's equipment, not external
+customer equipment.
+
+Applications and data storage can become complicated too. Legacy application
+revisions are needed to include multi-factor authentication. Plus, changes in data storage
+authorizations are essential to match least privilege, not inherited permissions given on
+traditional networks. Absolute Zero-Trust for most organizations isn't achievable due to
+complex administrative duties; however, most organizations should begin to implement
+some form of it.
+1.4. Achieving Zero-Trust
+Achieving Zero-Trust will be different for the various types of organizations. For
+example, a manufacturing organization will most likely have additional Zero-Trust
+requirements compared to a banking organization; or, an engineering organization will
+undoubtedly have different requirements than a financial organization. For established
+entities, Zero-Trust is more challenging to achieve due to legacy users, applications,
+hardware servers, and data storage. Hybrid environments, on-premise, combined with
+cloud-based IT systems, make it even tougher to attain complete Zero-Trust.
+Unfortunately, no one size approach suits every business and government unit; however,
+new organizations can immediately embrace the Zero-Trust framework. When planning
+Zero-Trust, simple open designed IT systems are easier to manage (Saltzer & Schroeder,
+1975).
+2. Trusting the Zero-Trust Process - Methodology
+The testing environment for this research uses a self-built lab with a Microsoft
+Azure cloud server infrastructure and two local virtual machines. The researcher chose
+this model for its ease and duplication; though, an on-premise or other cloud solution like
+Amazon Web Services is adequate as well. To audit a Zero-Trust model for compliance,
+an understanding of the IT system's five pillars and access control technology is crucial.
+
+For this research, the expectation is to deny all access to all five trust pillars by
+default; then, allow access as needed. The researcher will also use examples of microsegmentation to demonstrate a critical foundational principle of the Zero-Trust
+framework. Micro-segmentation creates logical network segments between controlled
+traffic from web apps to databases. This technique design is granular and prevents
+adversarial lateral movement from propagating, especially for web applications. Next, the
+researcher builds net-flow transports, which allows network traffic only through the
+needed ports. Then, for testing, the researcher completes several different mock
+scenarios
+
+For valid Zero-Trust, IT Auditors must verify with IT Administrators that all
+devices on the Zero-Trust segmentation are recognized and validated. The auditor must
+also know the processes to prove the devices are valid. There are are two primary device
+groups: bring your own device (BYOD) and organization devices. Organizations will
+provision their own devices through active directory; however, for BYOD, an endpoint
+management solution like Microsoft Enterprise Mobility and Security, MobileIron, or
+other platforms are necessary. Endpoint management solutions probe the device's
+hardware features to determine if a device meets the required hardware security
+
+standards. Plus, Zero-Trust requires an endpoint management solution for external
+customer-facing devices.
+User trust in the Zero-Trust security realm is continuously changing. Passwordbased user authentication is still widely used. However, single password-based
+authentication does not meet Zero-Trust conditions. Therefore, as a part of a Zero-Trust
+approach, organizations should make use of more enhanced user authentication practices.
+Multi-factor authentication is an ideal solution. Plus, for the very best multi-factor
+authentication, a smart card, USB token, certificates, and biometrics should be used. For
+most customer-based web applications, username/password and one-time-passcode will
+be adequate for multi-factor.
+
+
+

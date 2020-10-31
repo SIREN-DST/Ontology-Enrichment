@@ -1,0 +1,30 @@
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwid09XI_LvsAhWb4nMBHdPeBewQFjAAegQIAxAC&url=https%3A%2F%2Fwww.idrbt.ac.in%2Fassets%2Fpublications%2FBest%2520Practices%2FCloud%2520Security%2520Framework%2520(2013).pdf&usg=AOvVaw3WGtzdFTY7DFgUZvpwKCqS
+
+Security and Related Concerns in Cloud
+
+There are a number of security issues/concerns associated with Cloud computing. Gartner report specifies the following
+seven security issues in Cloud computing.
+Privileged User Access : Cloud computing allows the processing of the confidential data of user by personnel
+outside the organization, so non-employees could possibly have full access to it. Consumer should ask providers to
+supply specific information on the hiring and oversight of privileged administrators, and the controls over their
+access.
+Regulatory Compliance: Customers are ultimately responsible for the security and integrity of their own data, even
+when it is held by a service provider. Traditional service providers are subjected to external audits and security
+certifications.
+
+Data Location : When a customer uses the Cloud, customer probably would not know exactly where his data is
+hosted. It is required to ask providers if they will commit to storing and processing data in specific jurisdictions, and
+whether they will make a contractual commitment to obey local privacy requirements on behalf of their customers.
+Data Segregation : Data in the Cloud is typically in a shared environment alongside data from other customers.
+Encryption is effective but is not a cure-all. Encryption accidents can make data totally unusable, and even normal
+encryption can complicate availability.
+Recovery : Even if the consumer does not know where his data is, a Cloud provider should tell to his consumer what
+will happen to data and service in case of a disaster. Any offering that does not replicate the data and application
+infrastructure across multiple sites is vulnerable to a total failure.
+Investigative Support : Cloud services are especially difficult to investigate, because logging and data for multiple
+customers may be co-located and may also be spread across an ever-changing set of hosts and data centers.
+Long-term Viability : Ideally, Cloud computing provider will never go broke or get acquired and swallowed up by a
+larger company. But the consumer must ensure that his data will remain available even after such an event. It is
+essential to know from providers how he would get his data back and if it would be in a format that could import into
+a replacement application.
+

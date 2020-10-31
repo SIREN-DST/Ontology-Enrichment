@@ -1,0 +1,61 @@
+https://digitalguardian.com/blog/history-data-breaches
+
+As the wave of data breaches continues to crash down on companies, let’s take a look back at some of the largest and most damaging data breaches on record. Read on for a historical walk through breaches over time as well as resources for preventing data breaches.
+
+TechTarget defines a data breach as “an incident in which sensitive, protected, or confidential data has potentially been viewed, stolen, or used by an individual unauthorized to do so. Data breaches may involve payment card information (PCI), personal health information (PHI), personally identifiable information (PII), trade secrets, or intellectual property.” But how long have data breaches been a concern for companies and consumers, and what kind of impact have data breaches had throughout history?
+The Origin of Data Breaches
+
+Data breaches have gained widespread attention as businesses of all sizes become increasingly reliant on digital data, cloud computing, and workforce mobility. With sensitive business data stored on local machines, on enterprise databases, and on cloud servers, breaching a company’s data has become as simple – or as complex – as gaining access to restricted networks.
+
+Data breaches didn’t begin when companies began storing their protected data digitally. In fact, data breaches have existed for as long as individuals and companies have maintained records and stored private information. Before computing became commonplace, a data breach could be something as simple as viewing an individual’s medical file without authorization or finding sensitive documents that weren’t properly disposed of. Still, publicly-disclosed data breaches increased in frequency in the 1980s, and in the 1990s and early 2000s, public awareness of the potential for data breaches began to rise.
+
+Laws and regulations such as HIPAA or the PCI Data Security Standard are created to provide guidelines for companies and organizations handling certain types of sensitive consumer information. These regulations provide a framework for the required safeguards, storage, and use practices for handling sensitive information, but these rules don’t exist in all industries, nor do they definitively stop data breaches from occurring.
+
+Most information on data breaches focuses on the time period from 2005 to today. This is largely due to the advancement of technology and proliferation of electronic data throughout the world, making data breaches a top concern for both enterprises and consumers. Today’s data breaches can impact hundreds of thousands – often millions – of individual consumers, and even more individual records, all from a single attack on one company.
+
+ 
+4 Common Types of Data Breaches
+
+When large organizations “lose” or accidentally expose data, it’s often through hacking, negligence, or both. However, there are several other types of data loss and/or corruption that would be classified as a “breach.” Let’s take a look at four additional types of breaches.
+
+Ransomware
+
+[[{"fid":"17911","view_mode":"default","fields":{"alt":"Screenshot via ZDNet","title":"Screenshot via ZDNet","class":"media-element file-default media-wysiwyg-align-left","data-delta":"1","format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via ZDNet","field_file_image_title_text[und][0][value]":"Screenshot via ZDNet"},"type":"media","field_deltas":{"1":{"alt":"Screenshot via ZDNet","title":"Screenshot via ZDNet","class":"media-element file-default media-wysiwyg-align-left","data-delta":"1","format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via ZDNet","field_file_image_title_text[und][0][value]":"Screenshot via ZDNet"}},"attributes":{"alt":"Screenshot via ZDNet","title":"Screenshot via ZDNet","class":"media-element file-default","data-delta":"1"}}]]
+Image via ZDNet.
+
+Ransomware is the name for malicious software which gains access and locks down access to vital data (i.e., files, systems). These attacks most commonly target businesses. Files and/or systems are locked down and a certain fee is demanded (most often in the form of Bitcoin or other cryptocurrencies).
+
+Malware
+
+[[{"fid":"17916","view_mode":"default","fields":{"alt":"Screenshot via OnlineCMag","title":"Screenshot via OnlineCMag","class":"media-element file-default media-wysiwyg-align-center","data-delta":"2","format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via OnlineCMag","field_file_image_title_text[und][0][value]":"Screenshot via OnlineCMag"},"type":"media","field_deltas":{"2":{"alt":"Screenshot via OnlineCMag","title":"Screenshot via OnlineCMag","class":"media-element file-default media-wysiwyg-align-center","data-delta":"2","format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via OnlineCMag","field_file_image_title_text[und][0][value]":"Screenshot via OnlineCMag"}},"attributes":{"alt":"Screenshot via OnlineCMag","title":"Screenshot via OnlineCMag","class":"media-element file-default","data-delta":"2"}}]]
+Image via OnlineCMag.
+
+Malware is any software designed to harm computer files and/or systems. Ironically, malware often masquerades as a warning against malicious software in an attempt to convince users to download the very types of software mentioned in the “warning” message.
+
+Phishing
+
+[[{"fid":"17921","view_mode":"default","fields":{"format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via EDTS","field_file_image_title_text[und][0][value]":"Screenshot via EDTS"},"type":"media","field_deltas":{"3":{"format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via EDTS","field_file_image_title_text[und][0][value]":"Screenshot via EDTS"}},"attributes":{"alt":"Screenshot via EDTS","title":"Screenshot via EDTS","class":"media-element file-default","data-delta":"3"}}]]
+Image via EDTS.
+
+Phishing occurs when someone or something mimics a trusted, reputable entity in order to collect sensitive data (often banking or highly personal details). These attacks are not exclusive to the Internet. Common methods for phishing scams can include:
+
+    A pop-up on your browser
+    An email with a link
+    A person on the phone claiming to be a representative of a reputable company
+
+Denial-of-Service (DoS)
+
+[[{"fid":"17926","view_mode":"default","fields":{"format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via GregThatcher.com","field_file_image_title_text[und][0][value]":"Screenshot via GregThatcher.com"},"type":"media","field_deltas":{"4":{"format":"default","alignment":"","field_file_image_alt_text[und][0][value]":"Screenshot via GregThatcher.com","field_file_image_title_text[und][0][value]":"Screenshot via GregThatcher.com"}},"attributes":{"alt":"Screenshot via GregThatcher.com","title":"Screenshot via GregThatcher.com","class":"media-element file-default","data-delta":"4"}}]]
+Image via GregThatcher.com.
+
+A denial-of-service (DoS) breach essentially takes away access to websites and webpages. When this happens at large scale, it’s known as a distributed denial-of-service (DDoS). These large-scale attacks can disrupt a large portion of sites online in certain areas. One of the largest DDoS attacks on record is the 2016 attack on Dyn which made a considerable portion of Eastern U.S. Internet access virtually unusable for several hours. The largest and most recent DDoS attack happened to GitHub in February of 2018.
+
+ 
+How Many Data Breaches Occur?
+
+The Privacy Rights Clearinghouse, which reports on data breaches impacting consumers, maintains a chronology of data breaches and security breaches dating back to 2005. The data breaches reported by the Privacy Rights Clearinghouse include breaches in which the information compromised “includes data elements useful to identity thieves, such as Social Security numbers, account numbers, and driver's license numbers.”
+
+However, some breaches that do not compromise this type of sensitive information are also reported in order to provide a broad view of the variety and frequency of data breaches. Additionally, the data breaches reported here include only those reported in the United States, not incidents in other countries.
+Most Historical Accounts Document Breaches from 2005 Onward
+
+While data breaches were certainly occurring prior to 2005, most of the biggest data breaches recorded in history are reported in 2005 or beyond. This can be attributed to the fact that the world’s volume of data has been growing exponentially year after year, giving cyber criminals a greater opportunity to expose massive volumes of data in a single breach.

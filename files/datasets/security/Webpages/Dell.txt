@@ -1,0 +1,119 @@
+https://www.dellemc.com/en-in/collaterals/unauth/data-sheets/solutions/dell-encryption-enterprise-data-sheet.pdf
+
+Dell Encryption
+Today, organizations need to secure both the endpoints and the
+data on them, while supporting workforce mobility. Traditional
+encryption solutions are limited and restrictive in terms of
+deployment, extent of endpoint coverage and user performance.
+Traditional encryption solutions attempt to address these needs,
+but most are diffcult to deploy and manage, lack coverage for all
+endpoints and reduce performance for users.
+Dell Encryption Enterprise offers options with its ﬂexible encryption
+technology such as data-centric policy based approach as well a
+Full Disk Encryption approach to protect data. The solution is for
+designed for:
+• Ease of Deployment
+• End-user transparency
+• Hassle-free compliance
+• Ease of management with single console
+Dell Encryption is a ﬂexible suite of enhanced security solutions
+that include File Based encryption, Full Disk Encryption, enhanced
+centralized management of native encryption (Microsoft BitLocker
+and Mac FireVault) and protection of data on external media, selfencrypting drives and mobile devices.
+Dell Encryption Enterprise
+Dell Encryption Enterprise allows IT to easily enforce encryption
+policies, whether the data resides on the system drive or external
+media and doesn’t require end user intervention.
+A perfect solution for mixed-vendor environments,
+Encryption Enterprise enables:
+• Automatic deployment and provisioning when factory-installed
+on Dell commercial devices
+• Deployment in less than 30 minutes in VMware environments
+with Wizard-based installation and fully integrated database
+and key management
+• No required defragmenting before encryption
+• System disk and external media encryption in a single solution
+• Choose software Full Disk Encryption or File Based Encryption
+• Easy compliance management and auditing with one- touch
+compliance policy templates, remote management and quick
+system recovery
+• Integration with existing processes for authentication,
+patching and more
+• Sales and support for your hardware and security solutions
+from one source
+• Encryption of all data, except fles essential to booting the
+operating system or Full Disk Encryption, depending on
+your preference
+• Enhanced port control system to prevent data leakage
+• Ability to encrypt based on end user profles, data and groups
+within your organization
+• Centralized management of all encryption policies,
+including self-encrypting drives, Full Disk Encryption and
+Microsoft BitLocker encryption
+• Enhanced authentication for OPAL standard devices, including
+single sign-on to OS through Pre-Boot Authentication (PBA)
+using smart cards and passwords
+
+
+Dell Security Management
+Server Virtual
+With simplifed deployment utilizing a purpose-built virtual
+management server and console app for VMware, Dell has raised
+the bar on how easily and quickly our endpoint encryption solution,
+Dell Encryption, can be up and running in most mid-sized enterprise
+environments with up to 3,500 endpoints.
+The Dell Security Management Server Virtual makes Dell
+Encryption the perfect choice for SMEs that already have
+VMware solutions and are looking for a simple, rapidly deployable
+management platform for their encryption and authentication
+policies. It contains all of the same features and benefts of the
+standard Server, including full support for the broad range of
+encryption coverage available for laptops, desktops and
+external media.
+Managing Self-Encrypting Drives with Dell
+Encryption Enterprise
+Organizations using self-encrypting drives (SEDs) also require
+careful management if they are to be effective in reducing the risk
+of data loss and meeting their audit and compliance goals.
+Dell Encryption Enterprise provides a centralized, secure
+management for self-encrypting drives across your organization,
+both local and remote. All policy, authentication, management
+tasks, storing and retrieval of encryption keys are available from
+a single console, reducing the work of keeping critical data safe
+and reducing the risk that systems are unprotected in the event of
+loss or unauthorized access. Most importantly – the management
+for OPAL standard devices is fully integrated in the same data
+protection platform as File-Based encryption, Microsoft BitLocker,
+removable media encryption.
+Remote management capabilities include the ability to:
+• Disable logins and wipe user cache to protect data and ensure
+that only an authorized administrator can re-enable access to
+the protected data
+• Disable the device to prevent any user from logging into the
+system until an unlock command is sent
+• Enable the device so users can login to use the SED
+• Perform a remote and automatic unlock on the disk, enabling
+administrators to perform essential tasks such as patching
+without needing to leave the device unlocked overnight
+• Deliver full pre-boot authentication including authentication
+using Active Directory
+• Set policies for automated response to attacks
+(including brute-force attacks)
+
+
+Managing Full Disk Encryption with Dell
+Encryption Enterprise
+Organizations using Full-Disk Encryption, can 24x7 protect
+sensitive data that resides on PC and other endpoints. Dell
+Enterprise Encryption’s latest feature, Full-Disk Encryption helps
+effectively meet the demanding needs of data protection. Full Disk
+Encryption enables the following:
+• Complements our current encryption offering and
+makes our encryption solution one of the most robust in
+the industry
+• Delivers enterprise class pre-boot authentication for
+enterprise deployment
+• Uses TPM to protect keys which prevents any attacker from
+removing the hard drive from the platform and performing an
+ofﬂine attack of obfuscated keys stored on the drive
+• Encrypts all local hard drives within a simplifed deployment

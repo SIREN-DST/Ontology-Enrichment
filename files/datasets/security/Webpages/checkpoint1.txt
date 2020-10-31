@@ -1,0 +1,115 @@
+https://www.checkpoint.com/downloads/products/secure-remote-access-best-practices-in-disaster-recovery-scenarios.pdf
+
+
+As a general rule, all Check Point security gateways are
+equipped with Remote Access VPN capabilities that can
+be enabled to operate immediately by activating
+certain licenses. The activation and configuration of
+Remote Access is very simple and intuitive and does
+not require a significant level of technical knowledge
+from the administrator. To improve the user
+experience, Check Point also provides different types
+and methods of access; from the clientless to clientbased remote access VPN solutions, depending on the
+required level of access and types of applications in
+use.
+
+
+There are several factors to consider when choosing remote access solutions for your organization:
+Client-Based vs. Clientless – Installing a full software client enables the provisioning of multiple
+security features in a single solution: remote access, personal firewall, zero-day attack prevention,
+malware scanning, disk encryption, port protection, content security and many other capabilities. A
+full client also provides support for more complex encryption and authentication methods as well
+as a rich set of network configuration options, such as the allocation of internal-to-the-corporatenetwork IP addresses to remote machines. However, installing a full client requires administrators
+to validate configuration settings, define policies and conduct user acceptance testing. Client-less
+solutions provide far less features and often leverage functionality delivered by other desktop
+solutions, such as browsers and operating system components.
+Device security requirements – In general, the rule of least privilege applies in all security
+scenarios. Namely, only those people who require access should receive such access, and only
+those machines that should connect to systems should be allowed to do so. Once a decision is
+taken to enable remote access, the next step in the security process is to determine the trust,
+privilege and risk levels of the users and devices that will access internal resources. When the
+combination of risk and privilege are high, a stringent set of controls needs to be applied. These can
+be delivered at the network level, meaning the employees’ computers at home should not be
+trusted at all and any access should be contained within company controlled workspaces on the
+employees’ machines. This type of model can be supported by remote desktop like solutions that
+leverage SSL connections. Users remotely connect to their desktops in the office, and any and all
+work is performed on the corporate machine located within corporate boundaries. Alternatively,
+companies can also take-over employee computers at home and install a full set of security
+controls on those machines. In so doing, they effectively turn the employee’s computer into a
+corporate asset and apply full personal firewall, anti-malware, APT inspection, disk encryption and
+also IPSec VPN to the device. Of course, there are multiple alternatives within these two extremes,
+and the different remote access options are intended to support such alternatives.
+
+
+Secure Connectivity – When considering remote access options, administrators should determine if
+users will require the ability to work on their home machines (corporate or personal) with the same
+user experience as when in the office, or will it be acceptable to provide limited access to specific
+applications. In general, IPSec VPN solutions are best at replicating an in-office experience for
+employees working from home. In IPSec scenarios, the VPN inserts itself at the IP stack level and
+encrypts all network communications between the user’s machine and the corporate network. SSL
+tends to be more application specific and ensures the privacy of the communications channels
+between the applications running on the user’s machines and the back-end systems to which they
+communicate. In essence, with IPSec, administrators focus on building the secure communications
+path for the machine to the corporate network, while with SSL, IT teams ensure that the
+applications hosted on corporate resources are designed for SSL connections to employee devices.
+The following section summarizes highlights on the architectural considerations for implementing
+different remote access options.
+
+All remote access connections terminate at a gateway. The location of the VPN concentration
+solution carries with it security administrative implications that should be understood prior to
+implementing access to connecting machines.
+The following section highlights a number of options for designing VPN gateways in the network.
+Scenario 1: Simple perimeter gateway deployment for
+smaller companies
+In the simplest remote access deployment, a single
+gateway, or cluster, inspects all traffic, including
+sessions with remote access clients.
+The gateway runs a full stack of security protections,
+including firewall, VPN, intrusion prevention,
+application control and content security, advanced
+threat prevention and others. The gateway would be
+configured on the network perimeter.
+This configuration is the simplest and is relevant for
+smaller organizations who do not need to support
+multiple network segments and in-house hosted
+applications.
+Scenario 2: VPN gateway as a dedicated security gateway in
+DMZ
+When a remote access enabled Security Gateway is placed in
+the DMZ, traffic initiated both from the Internet and from
+the LAN to mobile users is subject to firewall restrictions.
+In addition, by deploying the remote access gateway in the
+DMZ, the need to enable direct access from the Internet to
+the LAN is avoided. Instead, remote users initiate a VPN
+connection to the remote access gateway.
+In this configuration, external gateway policy forwards VPN
+traffic to the VPN concentrator, where encryption
+terminates, and threat prevention, authentication, and
+authorization take place. The VPN gateway forwards
+requests to the internal servers.
+
+Scenario 3: VPN termination as a dedicated single or
+multiple Security Gateways (appliances), or virtual
+instances running in VSX mode or as a Virtual Machine
+(VM)
+Administrators can use multiple appliances or virtual
+versions of Check Point gateways to support remote
+access connections.
+In VSX deployments, each Virtual System can have a
+Mobile Access portal with different applications, access
+policies, authentication requirements, and mobile
+clients. The same cloud be achieved by deploying
+several security appliances as physical gateways.
+For example, in the picture to the right, a VSX Gateway
+has four Virtual Systems with remote access VPN
+enabled. Each Virtual System is configured with
+different settings to meet the company's needs for
+different users.
+This scenario also fits well when there is a demand to significantly increase the number of remote
+access users in the existing setup or a new configuration in order to ensure proper performance
+and scalability of security gateways responsible for remote access VPN.
+With IPSec VPN scenarios, the recommendation is to leverage several security gateways or Virtual
+Systems to enable Multiple Entry Points (MEP) with load sharing among the virtual gateways. The
+remote users with a pre-installed client will automatically choose the virtual system to which they
+will connect in random distribution, thus reducing the load on a single gateway.
+

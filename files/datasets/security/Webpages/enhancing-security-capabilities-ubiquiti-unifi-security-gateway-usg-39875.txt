@@ -1,0 +1,1967 @@
+SANS Institute
+Information Security Reading Room
+
+Enhancing the security
+capabilities of the Ubiquiti
+UniFi Security Gateway (USG)
+______________________________
+Tim Coakley
+
+Copyright SANS Institute 2020. Author Retains Full Rights.
+This paper is from the SANS Institute Reading Room site. Reposting is not permitted without express
+written permission.
+
+ts
+gh
+Ri
+
+Fu
+
+ll
+
+Enhancing the security capabilities of the Ubiquiti
+UniFi Security Gateway (USG)
+
+ai
+
+ns
+
+GIAC (GDSA) Gold Certification
+
+,A
+
+ut
+
+ho
+
+rR
+
+et
+
+Author: Tim Coakley, timcoakley@yahoo.co.uk
+Advisor: Christopher Walker, CISSP, CCISO, CISA, GCED, GWEB
+Accepted: October 1, 2020
+
+st
+
+itu
+
+te
+
+Abstract
+
+Th
+
+e
+
+SA
+
+NS
+
+In
+
+The UniFi Security Gateway (USG) is a popular security device manufactured by
+Ubiquiti; it is relatively unique within the marketplace for its affordability and adoption
+of use within both Enterprise and SOHO environments. The USG, at its core, provides a
+firewall, routing, and advanced security features for network protection, traffic
+management, and ease of integration. A balanced set of features come pre-packaged.
+However, advanced users and security practitioners seeking more granular detail may be
+disappointed with some of the box security reporting options.
+
+©
+
+20
+
+20
+
+This paper seeks to document, utilize, and extend upon the capabilities of the
+USG device to enhance monitoring, detection, and reporting of events within a
+cybersecurity context. This paper will benefit a broad range of security practitioners
+from Enterprise, Small business, and independent security researchers.
+
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 2
+
+Fu
+
+ll
+
+1. Introduction
+
+ns
+
+America technology company Ubiquiti created the USG. It comes in two form
+factors, USG and USG Pro 4, sharing very similar feature sets differing primarily in
+
+et
+
+ai
+
+throughput, memory, and processor requirements. Both models are enterprise solutions
+
+rR
+
+(Ubiquiti, 2020).
+
+ho
+
+The Ubiquiti product range places a strong emphasis on modular and ease of
+
+ut
+
+integration with other Ubiquiti products, desirable in an enterprise environment, achieved
+
+,A
+
+through the use of controller software. The UniFi controller can be deployed on premise
+
+te
+
+or off-premise to manage and integrate all devices from a central location collectively.
+
+itu
+
+On-premise controllers can be implemented as installed software on almost any client
+
+st
+
+device or through a dedicated low power device called a UniFi Cloud Key. A UniFi
+
+In
+
+Cloud Key connects directly to a UniFi switch port using Power over Ethernet with
+
+NS
+
+software hosted on an onboard SD Memory card. Off-premise controllers are typical via
+cloud-hosted environments and ideal for global enterprises with centralized Network
+
+©
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+Operations (Ubiquiti, 2020).
+
+Illustration 1: Basic Architecture
+This paper briefly delves into the UniFi Controller interface to enable features
+necessary to enhance the security functionality of a USG further. The majority of the
+research will focus on extracting value from the logging information created by a USG
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 3
+
+Fu
+
+accessible from within the factory set controller environment interfaces.
+
+ll
+
+during operation. It was noted logging information is not readily available to a user or
+
+ns
+
+Initial review of the USG identified several shortcomings with the controller
+
+ai
+
+interface, including but are not limited to the inability to view, search, enrich, process,
+
+et
+
+and report on the internal logging, which by default is disabled.
+
+rR
+
+The researchers' goal is to use available technology to best process available
+
+ho
+
+logging from a UniFi USG device to be analyzed from a cybersecurity perspective and in
+
+,A
+
+ut
+
+a cost-effective manner suitable for the broadest audience.
+
+te
+
+2. Research and Design
+
+itu
+
+Several considerations were taken before conducting the study to include a high-
+
+st
+
+level solution design, which greatly influenced this paper's outcome. The solution must
+
+In
+
+rely on open source technology, be flexible, and process data of differing velocity,
+
+NS
+
+volume, and variety. The following high-level tasks were identified:
+
+SA
+
+1. Build Infrastructure; for test and development
+
+Th
+
+e
+
+2. Configure the USG device
+
+4. Develop log parsing pattern
+5. Build Dashboard and Search Index (proposed final security enhancement)
+
+©
+
+20
+
+20
+
+3. Analyze log samples
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Solution Diagram
+
+ll
+
+2.1
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 4
+
+Fu
+
+The following illustration shows the USG, Log Collector, and ELK consisting of
+
+ns
+
+Elasticsearch, Logstash, and Kibana (Elastic, 2020) to include example IP addresses and
+
+ai
+
+port numbers. A fictitious but relevant IoT network is present in the design, as this may
+
+SA
+
+NS
+
+In
+
+st
+
+itu
+
+te
+
+,A
+
+ut
+
+ho
+
+rR
+
+et
+
+be a common challenge in many enterprises.
+
+Th
+
+e
+
+Illustration 2: Network Architecture
+
+20
+
+20
+
+2.2
+
+Components
+The logical components in the following table were utilized for this research. The
+
+©
+
+components represent minimum software requirements.
+Item
+
+Version
+
+Description
+
+UniFi Network Controller 5.13.32
+
+Network Management Software
+
+Fluentd
+
+0.12.40
+
+Log Agent
+
+Filebeat
+
+7.8.0
+
+Log Forwarder
+
+Elastic Search
+
+6.8.10
+
+Lucene based search engine
+
+Log Stash
+
+7.8.0
+
+Data processing pipeline
+
+Kibana
+
+7.7.3
+
+Data visualization
+
+Memcached
+
+1.6.7
+
+Key-value store for enrichment
+
+Table 1: Logical Components
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+USG Configuration – IoT Network Configuration
+
+ll
+
+2.3
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 5
+
+Fu
+
+A fictitious network called IoT, abbreviated for the "Internet of Things", was
+
+ns
+
+created and was isolated from the corporate environment. The network was intended to
+
+ai
+
+route Internet connectivity to non-corporate mobile devices and prevent direct
+
+ut
+
+ho
+
+rR
+
+et
+
+connectivity to corporate devices.
+
+,A
+
+Illustration 3: IoT Network Configuration
+
+USG Configuration – Firewall Rule Configuration
+
+te
+
+2.4
+
+itu
+
+A firewall rule was created as "IoT OUTBOUND Logging", this test rule
+
+st
+
+permitted all outbound traffic and log activity. The rule was critical to enable the USG
+
+In
+
+device to generate the appropriate log data. The firewall rule only applied to the IoT
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+NS
+
+network detailed in the previous section 2.3.
+
+©
+
+Illustration 4: Firewall Configuration
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+©
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+NS
+
+In
+
+st
+
+itu
+
+te
+
+,A
+
+ut
+
+ho
+
+rR
+
+et
+
+ai
+
+ns
+
+Fu
+
+ll
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 6
+
+Illustration 5: IoT Outbound Logging Configuration
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+USG Configuration – Enable Logging
+
+ll
+
+2.5
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 7
+
+Fu
+
+The setting to Enable remote Syslog server was enabled. This setting was enabled
+
+ns
+
+to send logs from the USG device to the remote log collector/aggregator. In this example,
+
+Use Cases
+
+itu
+
+2.6
+
+te
+
+,A
+
+Illustration 6: Enable Remote Logging
+
+ut
+
+ho
+
+rR
+
+et
+
+ai
+
+the collector was hosted at 192.168.1.4 on port 5140.
+
+st
+
+The research scenario was to monitor outbound traffic to the Internet from devices
+
+In
+
+connected to the IoT network. With no prior experience or business priorities,
+
+NS
+
+exploratory use cases to understand and baseline activity are detailed in the following
+
+SA
+
+table.
+
+Description
+
+1
+
+Identify the most common ports by destination
+
+2
+
+Identify the least common ports by destination
+
+3
+
+Identify the activity based on the least common destination country
+
+4
+
+Identify the activity based on the least common destination region
+
+5
+
+Identify the activity of destination country by frequency
+
+6
+
+Identify the most common destination IP address
+
+7
+
+Display geographic map activity
+
+8
+
+Enhanced enrichment of malware threat lookup
+
+©
+
+20
+
+20
+
+Th
+
+e
+
+#
+
+Table 2: Use Cases
+More complex use cases were considered, including but not limited to frequency
+and length of connections. An enrichment process was created, see use case number
+seven, of the above table with geographic representation of IP address data. An
+additional enrichment process requiring an accurate and up to date threat feed was also
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 8
+created to detect devices connecting to malicious destination addresses, see use case
+
+Tags
+
+ns
+
+2.7
+
+Fu
+
+ll
+
+eight.
+
+ai
+
+Tags are an essential method of putting data into related groups, useful for an
+
+et
+
+operator tasked with managing or analyzing large data sets (Defining Alerts, 2020). In
+
+rR
+
+this research, data is partitioned using the following groups:
+
+Logs which have not parsed correctly (tag: _grokparsefailure)
+
+•
+
+Logs derived from the IoT network and correctly parsed (tag: IoT)
+
+•
+
+Logs which have not been successfully enriched tag: _geoip_lookup_failure).
+
+te
+
+,A
+
+ut
+
+ho
+
+•
+
+itu
+
+Tagging complements filtering and analysis techniques by allowing large datasets
+
+st
+
+to be significantly reduced before performing more memory-intensive filtering operations
+
+In
+
+such as Boolean conditions and full-text searching. Tagging strategies were also useful
+
+NS
+
+for detecting and troubleshooting during log parsing development or through unexpected
+
+©
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+changes in logging format.
+
+Illustration 7: Tagging
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 9
+
+Fu
+
+GROK
+
+ns
+
+3.1
+
+ll
+
+3. Tools and Techniques
+
+ai
+
+Logstash GROK is a pattern-matching language for parsing arbitrary text and
+
+et
+
+structure it for processing; Logstash includes over 100 default patterns (Elastic, 2020). A
+
+rR
+
+custom grok pattern for matching USG logs was required to parse events from USG
+
+ho
+
+logging correctly. The complete grok pattern is included within the sample Logstash
+
+ut
+
+configuration, lines 10 through to 17 in Appendix A.
+
+,A
+
+The development phase, creating the appropriate grok pattern to match all fields
+
+te
+
+while discarding non-matching fields, was found to be the most problematic and time-
+
+itu
+
+consuming. Rudimentary debugging was available through the command line execution
+
+st
+
+using Logstash and an online pattern debugger grokdebug (GrokDebug, 2020).
+
+In
+
+Improvements in development techniques would increase awareness and adoption of this
+
+NS
+
+pattern matching methodology.
+Kibana Index Pattern and Elastic Indexes
+
+SA
+
+3.2
+
+e
+
+From within the management interface of the Kibana instance, an index pattern
+
+Th
+
+was defined using the pattern logstash-usgfirewall-* (Index patterns and fields, 2020).
+
+20
+
+During development, it was noted that the prepended Logstash- is mandatory for the
+
+©
+
+20
+
+built-in GeoIP enrichment to function correctly.
+The Index Management interface for Elasticsearch confirmed the Logstash
+
+configuration and Kibana index pattern worked as designed with an index created for
+each day of logging received. As defined in the Logstash configuration file, an example
+index was created logstash-usgfirewall-2020.07.12. All parsed fields were indexed,
+allowing ingested logs to be searched, filtered, and reported.
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+SA
+
+NS
+
+In
+
+st
+
+itu
+
+te
+
+,A
+
+ut
+
+ho
+
+rR
+
+et
+
+ai
+
+ns
+
+Fu
+
+ll
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 10
+
+20
+
+Th
+
+e
+
+Illustration 8: Elasticsearch Indexes generated daily
+
+©
+
+20
+
+3.3
+
+Kibana Date Time Settings
+During development, date time stamps from the logs displayed incorrectly as the
+
+system local date-time. Log source date-time was stored as UTC by the USG device.
+The research concluded that the Kibana interface would default to the user time zone’s
+current browser setting, which may misrepresent the presented log records. The Kibana
+Advanced Settings for time zone was modified from 'browser' to 'UTC'.
+
+Illustration 9: Kibana Timezone Property
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Dashboard
+
+Fu
+
+3.4
+
+ll
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 11
+
+ns
+
+Visual elements have been created according to the use cases documented in
+
+ai
+
+section 2.6. The visual creation process is trivial, given the Graphical User Interface
+
+et
+
+provided using Kibana (Visualize, 2020). For brevity, procedural steps are not included;
+
+rR
+
+a selection of screen capture illustrates the simple process of creating unique visuals to
+
+©
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+NS
+
+In
+
+st
+
+itu
+
+te
+
+,A
+
+ut
+
+ho
+
+form a single dashboard containing multiple visuals.
+
+Illustration 10: Creating Visuals
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+te
+
+,A
+
+ut
+
+ho
+
+rR
+
+et
+
+ai
+
+ns
+
+Fu
+
+ll
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 12
+
+itu
+
+Illustration 11: Creating a Dashboard from Visuals
+Enhanced Enrichment Threat Data
+
+st
+
+3.5
+
+In
+
+To further enhance the security capabilities and fulfill the proposed use cases,
+
+NS
+
+additional detective capability was developed. Destination addresses suspected of
+
+SA
+
+containing malware was maintained in a managed list and used as a lookup referred to as
+a threat data lookup. The threat data lookup in this research was simulated to avoid
+
+Th
+
+e
+
+including real malicious addresses.
+
+20
+
+The software Memcached was required as a key-value pair lookup; this was an
+
+20
+
+open-source distributed memory object caching service (MemCached, 2020). The
+
+©
+
+software was installed onto the same platform containing the ELK technology; however,
+Memcached can be installed on a dedicated system for greater scalability.
+Entries consisting of malicious IP address key pairs were entered into the
+Memcached instance before assessment for the automated comparison to function
+correctly.
+Additional configuration of the logstash.conf file was required, the following code
+was included for Logstash to connect to the running Memcached instance. A get request
+was also needed; the get request requires the destination IP address from each log file
+entry as a parameter. If the destination IP address exists within the Memcached store, the
+ELK field malware_ip is populated with the value 'malware'.
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+ll
+Fu
+
+ns
+
+memcached {
+hosts => ["127.0.0.1:11211"]
+get => {"%{DSTIP}" => "[malware_ip]"}
+}
+
+gh
+
+Enhancing the security capabilities of the USG 13
+
+Confirmation of no match within the threat feed was also required, where an entry
+
+et
+
+ai
+
+in the threat feed was not present the ELK field malware_ip is populated with the value
+
+rR
+
+'no'.
+
+,A
+
+ut
+
+ho
+
+if ![malware_ip] {
+mutate {
+add_field=> {"[malware_ip]" => "no"}
+}
+}
+
+itu
+
+te
+
+The addition of the threat feeds allows any external data source to be compared
+against corporate network traffic. Threat feeds were found to provide additional situation
+
+In
+
+st
+
+context and detective capabilities. The further enrichment would give extra assurance to
+the business, showing resources are likely not to have been negatively impacted over a
+
+NS
+
+period of time. Threat feeds also allow the business to respond through prevention and
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+incident response capabilities in a timelier manner, where detection is successful.
+
+©
+
+Illustration 12: Enriched Malware Log Entry marked as malware
+Enriched log entries within the ELK, indicating malicious resources can be
+
+filtered and added to the dash boarding and alerting process.
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Fu
+
+4. Improvements and Recommendations
+
+ll
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 14
+
+ns
+
+During the research and development process, several improvements and
+
+ai
+
+recommendations were documented and considered when implementing the proposed
+
+et
+
+research.
+
+rR
+
+In building the Infrastructure, the implementation should aim to make systems at
+
+ho
+
+least CIS Benchmarks Level 1. Benchmarks provide a suitable level of systems security
+
+ut
+
+hardening, dependent on business requirements (CIS, 2020).
+
+,A
+
+Further enrichment of existing logging data is possible and can be implemented.
+
+te
+
+Examples include but are not limited to incident indicators of compromise lookups or
+
+itu
+
+DNS reverse lookup to identify any domain names hosted on an IP address.
+
+In
+
+st
+
+The development of more advanced use cases is recommended. This research
+applied to new network connections only. Existing connections should be included to
+
+NS
+
+identify the length of connections, essential to identify persistent remote access
+
+SA
+
+throughout of a given time.
+
+e
+
+Correlation of logs with other log sources is strongly recommended, for example
+
+Th
+
+assessing daily activity against previous activity for repeated suspicious behavior. In
+
+20
+
+particular, logs should be correlated against incidents that are ongoing or incidents
+
+20
+
+recently closed and still within the Recovery and Lessons Learned phases of incident
+
+©
+
+response.
+Alerts and Incidents generated from logs can automatically be forwarded to a
+suitable incident response platform. This recommendation would be as part of the
+automated security incident response process. Suspect events are converted to
+alerts/incidents and tasks automatically assigned to analysts to investigate and enrich
+beyond automated means.
+Several log types were identified during research, many of which were not
+immediately used for the project goals, additional investigation is recommended. The
+research focused on log type usgfirewall.kern.warn only, a complete list of identified
+vendor undocumented log types as a result of this research is listed in Appendix D.
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 15
+The timezone of log sources is recommended to be set to UTC and ensure any log
+
+Fu
+
+ll
+
+review platform, including Kibana, is correctly displaying log date and time. Without
+this recommendation, Timestamp indexing in Kibana would provide misleading
+
+ai
+
+ns
+
+information to an analyst.
+
+et
+
+The configured 'IoT' network used for this project utilized IPv4 only;
+
+ho
+
+rR
+
+consideration should be given for devices requiring IPv6.
+
+ut
+
+5. Excluded Items
+
+,A
+
+The research relied upon several essential development stages, which, for brevity,
+
+te
+
+are not included in detail within the paper but are instead summarized in this section.
+
+itu
+
+Log collection and aggregation is a crucial precursor to any security enhancement
+
+st
+
+strategy of this type. With the breadth of available logging agents available, the decision
+
+In
+
+of the agent is left to the reader. This research utilized to-agent but is by no means
+
+NS
+
+considered the de-facto standard (Fluentd, 2020). The relevant section of the sample
+
+SA
+
+config file used for the chosen agent is presented in Appendix B.
+
+e
+
+Log forwarding is a crucial precursor to this research, which utilized FileBeat for
+
+Th
+
+log forwarding to the ELK instance (FileBeat, 2020). The reader should consider the
+
+20
+
+appropriate forwarding agent for their specific use cases. A complete sample filebeat
+
+©
+
+20
+
+configuration file created for this project is presented in Appendix C.
+ELK (Elastic Logstash Kibana) instance installation, build, and configuration is
+
+not covered in detail as part of the research. Complexity based on business needs and a
+variety of release version and host operating systems makes concise documentation
+challenging to achieve.
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 16
+
+Fu
+
+ll
+
+6. Conclusion
+
+ns
+
+The combination of USG configuration supported by open source technology
+
+ai
+
+allows security practitioners to monitor, detect, and report suspect events based on
+
+et
+
+business defined use cases.
+
+rR
+
+Research into enhancing the security capabilities of the USG was successful. It
+
+ho
+
+highlighted other areas of research and development to expand on the findings.
+
+ut
+
+Significant cost savings may be made to any enterprise that chooses to build in-house
+
+,A
+
+security monitoring solutions.
+
+te
+
+Enrichment, including but not limited to threat feed assessments, provide the
+
+itu
+
+business and security management with an ongoing level of assurance. Enrichment is
+
+st
+
+pivotal to improving enhanced detective capabilities and providing management with a
+
+In
+
+continued sense of confidence, improvement and that security is a business enabler.
+
+NS
+
+Development time may be substantial; therefore, a planned strategy and skilled
+
+SA
+
+workforce are required for an enterprise to create a solution that adds security value and
+
+e
+
+is sustainable. One suitable approach would be to offload existing monitoring of less
+
+20
+
+Th
+
+critical business areas were vendor costs are charged based on log throughput.
+Improvement in personnel development and up-skilling may be increased where
+
+20
+
+in-house development is encouraged, and business resource exists. Areas include but are
+
+©
+
+not limited to system development, code development, security engineering, security rule
+development, and more intimate knowledge of security systems used in an enterprise.
+During log analysis of the USG logs, the log type usgfirewall.kern.warn was
+identified as the most suitable log type generated by the USG for firewall monitoring.
+All log types were found to be undocumented. Analysis of the additional log types may
+yield additional value from a security analyst perspective.
+The ELK technology stack proved to be a suitable solution for both small and
+large datasets limited only by the available hardware. Elasticsearch indexing was found
+to be more than adequate, visualization and dashboard features were found to be
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 17
+
+Fu
+
+the ELK technology stack with an automated Incident Response platform.
+
+ll
+
+satisfactory. Further work, not conducted as part of this research, is required to integrate
+
+ns
+
+The USG provides a useful security feature set that is cost-effective for a broad
+
+ai
+
+user base. It would be possible for the vendor UniFi to incorporate some of the findings
+
+et
+
+presented from this research directly into the USG device. Currently, no firewall logging
+
+©
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+NS
+
+In
+
+st
+
+itu
+
+te
+
+,A
+
+ut
+
+ho
+
+rR
+
+data, visuals, or dashboards are introduced to a user directly from the device.
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 18
+
+Fu
+
+ll
+
+References
+
+UniFi Security Gateway, Enterprise Gateway Router Datasheet. Retrieved July 27, 2020,
+
+ns
+
+from https://dl.ubnt.com/datasheets/unifi/UniFi_Security_Gateway_DS.pdf
+
+ai
+
+Elastic, Grok Filters, Retrieved August 7, 2020, from
+
+et
+
+https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html
+
+rR
+
+GrokDebug, Online Grok Debugger. Retrieved July 27, 2020, from
+
+ho
+
+grokdebug.herokuapp.com/
+
+ut
+
+CIS (Center for Internet Security). Retrieved July 28, 2020, from
+
+,A
+
+https://www.cissecurity.org/cis-benchmarks/
+
+te
+
+ELK (Elastic Logstash Kibana) Technology Stack. Retrieved July 28, 2020, from
+
+itu
+
+https://www.elastic.co/what-is/elk-stack
+
+st
+
+Defining alerts. Retrieved July 28, 2020, from
+
+In
+
+https://www.elastic.co/guide/en/kibana/7.9/defining-alerts.html
+
+NS
+
+Index patterns and fields. Retrieved July 28, 2020, from
+
+SA
+
+https://www.elastic.co/guide/en/kibana/7.8/managing-fields.html
+Visualize. Retrieved July 28, 2020, from
+
+Th
+
+e
+
+https://www.elastic.co/guide/en/kibana/current/visualize.html
+
+20
+
+Fluentd. Retrieved July 28, 2020, from
+https://www.fluentd.org/download
+
+©
+
+20
+
+Filebeat. Retrieved July 28, 2020, from
+https://www.elastic.co/beats/filebeat
+
+Memcached. Retrieved September 27, 2020, from
+https://www.memcached.org/
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 19
+
+Fu
+
+ll
+
+Appendix
+
+ns
+
+A. Sample Logstash Configuration File (logstash.conf)
+# Define the input source, filebeats using port 5044, usgfirewall for identification
+
+ai
+
+input {
+
+et
+
+beats {
+port => 5044
+
+rR
+
+type => usgfirewall
+}
+
+ho
+
+}
+filter {
+
+ut
+
+# Match logs specific to the USG device
+grok {
+
+,A
+
+match => { "message" =>
+
+"^%{NOTSPACE:timestamp}%{SPACE}%{NOTSPACE:Logtype}%{SPACE}\{\"host\":\"ubnt\",\"ident\":\"kernel\",\"m
+
+te
+
+essage\":\"\[%{WORD:interf}-%{WORD:ruleindex}-%{WORD:protocol}\]IN=%{NOTSPACE:IN}
+
+itu
+
+OUT=%{NOTSPACE:OUT}%{SPACE}MAC=%{NOTSPACE:MAC}%{SPACE}SRC=%{NOTSPACE:SRCIP}%{SPACE}DST=%{NOTSPACE:DSTI
+P}%{SPACE}LEN=%{WORD:Len}%{SPACE}TOS=%{WORD:TOS}%{SPACE}PREC=%{WORD:PREC}%{SPACE}TTL=%{WORD:TTL}%{SPAC
+
+st
+
+E}ID=%{WORD:ID}%{SPACE}(%{NOTSPACE:PROTO}| DF
+
+PROTO)=%{WORD:DF}%{SPACE}SPT=%{WORD:SPT}%{SPACE}DPT=%{WORD:DPT}" }
+
+In
+
+}
+mutate {
+
+NS
+
+# convert text to integer, useful to sort destination port numbers
+convert => { "DPT" => "integer" }
+
+SA
+
+}
+
+# set the timestamp parsed from logs as default timestamp field
+date {
+
+e
+
+match => ["timestamp", "yyyyMMdd'T'HHmmssZ"]
+
+Th
+
+target => "@timestamp"
+
+}
+
+20
+
+# enrich the DSTIP using geoip to provide geographic information based on IP address
+geoip {
+
+20
+
+source => "DSTIP"
+
+}
+# enhanced enrichment threat feed assessment
+
+©
+
+memcached{
+hosts => ["127.0.0.1:11211"]
+get => {"%{DSTIP}" => "[malware_ip]"}
+}
+# populate field if no match is found
+if ![malware_ip] {
+mutate {
+add_field => {"[malware_ip]" => "no"}
+}
+}
+# A a tag where a log originates from ethernet interface 1, VLAN 40 (IoT Network)
+if [IN] == "eth1.40" {
+mutate {
+add_tag => ["IoT"]
+}
+}
+}
+# Output to elastic search index specific to USG device
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 20
+output {
+if [type] == "usgfirewall" {
+
+ll
+
+elasticsearch {
+
+Fu
+
+hosts => ["http://192.168.1.5:9200"]
+index => "logstash-usgfirewall-%{+YYYY.MM.dd}"
+
+ns
+
+}
+}
+
+et
+
+ai
+
+}
+
+ho
+
+rR
+
+B. Sample Fluentd Configuration File (td-agent.conf)
+# syslog
+
+ut
+
+<source>
+@type syslog
+
+,A
+
+port 5140
+tag usgfirewall
+
+itu
+
+path /var/log/td-agent/usg_firewall
+
+te
+
+bind 0.0.0.0
+
+st
+
+</source>
+
+filebeat.inputs:
+- type: log
+paths:
+
+SA
+
+enabled: true
+
+NS
+
+In
+
+C. Sample Filebeats Configuration File (filebeat.yml)
+
+- /var/log/td-agent/usg_firewall*.*
+
+Th
+
+e
+
+exclude_files: ['.gz$']
+output.logstash:
+
+©
+
+20
+
+20
+
+hosts: ["192.168.1.5:5044"]
+
+D. Identified LogTypes
+
+Undocumented log types identified during this research:
+1
+
+usgfirewall.kern.warn
+
+2
+
+usgfirewall.daemon.info
+
+3
+
+usgfirewall.user.info
+
+4
+
+usgfirewall.daemon.notice
+
+5
+
+usgfirewall.kern.info
+
+6
+
+usgfirewall.cron.info
+
+7
+
+usgfirewall.authpriv.info
+
+8
+
+usgfirewall.daemon.warn
+
+9
+
+usgfirewall.daemon.err
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+ts
+
+11
+
+usgfirewall.user.notice
+
+ll
+
+usgfirewall.syslog.err
+
+Fu
+
+10
+
+Ri
+
+gh
+
+Enhancing the security capabilities of the USG 21
+
+©
+
+20
+
+20
+
+Th
+
+e
+
+SA
+
+NS
+
+In
+
+st
+
+itu
+
+te
+
+,A
+
+ut
+
+ho
+
+rR
+
+et
+
+ai
+
+ns
+
+Table 3: Identified LogTypes
+
+Tim Coakley, timcoakley@yahoo.co.uk
+© 2020 The SANS Institute
+
+Author retains full rights.
+
+Last Updated: October 18th, 2020
+
+Upcoming SANS Training
+Click here to view a list of all SANS Courses
+SANS Sydney 2020
+
+Sydney, AU
+
+Nov 02, 2020 - Nov 14, 2020
+
+Live Event
+
+SANS Secure Thailand
+
+Bangkok, TH
+
+Nov 09, 2020 - Nov 14, 2020
+
+Live Event
+
+APAC ICS Summit & Training 2020
+
+Singapore, SG
+
+Nov 13, 2020 - Nov 28, 2020
+
+Live Event
+
+SANS Community CTF
+
+,
+
+Nov 19, 2020 - Nov 20, 2020
+
+Self Paced
+
+SANS Local: Oslo November 2020
+
+Oslo, NO
+
+Nov 23, 2020 - Nov 28, 2020
+
+Live Event
+
+SANS Wellington 2020
+
+Wellington, NZ
+
+Nov 30, 2020 - Dec 12, 2020
+
+Live Event
+
+SANS OnDemand
+
+OnlineUS
+
+Anytime
+
+Self Paced
+
+SANS SelfStudy
+
+Books & MP3s OnlyUS
+
+Anytime
+
+Self Paced
+
+

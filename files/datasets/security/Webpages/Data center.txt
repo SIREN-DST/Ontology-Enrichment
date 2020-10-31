@@ -1,0 +1,28 @@
+https://www.sifytechnologies.com/blog/5-focus-areas-for-data-center-security/
+
+Every year, businesses are incurring significant losses – they are losing money, customers and their reputation – due to cyber attacks. By 2019, cyber crime is predicted to cost businesses $2 trillion worldwide. So it’s hardly surprising that, from boardrooms to server rooms, almost all IT related conversation revolve around Security.
+
+Data and IT infrastructure security have always been a huge concern for all businesses and now with IT systems moving to cloud platforms it has taken center stage on all IT agendas.
+
+Security solutions have always been a key part of DC design and architecture and Data Center owners have worked hard to ensure the highest level of security and have scrupulously followed industry best practices for security and met all compliance norms. But Data Centers are complex ecosystems and protecting it requires that security requirements of every component must be considered separately, but at the same time follow a central, holistic security policy.
+
+Here are some of the critical components and their special security requirements.
+Physical Security of DC
+
+Physical security of the Data Center building and its components is crucial for keeping the data within it safe. The Data Center building must be designed to weather all types of physical challenges, from terrorist attacks and industrial accidents to natural disasters. Enhancing physical security includes a variety of measures such as DC design with thicker walls and fewer windows and doors, enhancing CCTV monitoring, fire protection and investing in specialized security team.
+Restricting Access
+
+DC security team needs to keep a close watch on the people who enter the Data Center. From cleaning crew and internal IT staff to visitors, access to critical areas must be restricted and all movement must be tracked to ensure that unauthorized people are kept out of sensitive server rooms.
+Securing your Data
+
+All Data Center security is ultimately aimed at keeping the hosted data safe and private. This includes comprehensive measures such as complete data backup and recovery, using data encryption while transferring files, enforcing the latest data privacy regulations and comprehensive monitoring of traffic.
+Network security
+
+The first layer of network security is securing the perimeter by installing firewalls to clean up traffic right at the point of entry. This can be followed up by using the Zero trust model and inspecting and monitoring the internal traffic within the network, to detect and mitigate any threat that might have bypassed the perimeter firewall.
+Server security
+
+With virtualization, server security has become more complex and challenging. It is imperative to follow industry standards to ensure complete server security with 24×7 monitoring, intrusion detection and intrusion prevention. Comprehensive security solutions need to protect all virtual and physical server environments and infrastructure as well as all web-based applications.
+
+All businesses face a very real risk. Cyber attackers are now targeting anyone and everyone, regardless of size or industry. And these attacks are becoming more aggressive and sophisticated.
+
+Being at the receiving end of these attacks, Data Center companies are, of course, well aware of the extent of the problem and are devising equally aggressive and innovative ways to safeguard their businesses. The continuing fight against cyber attacks has resulted in DC security services market worth $6.36 billion, a number that is set to grow exponentially in the coming decade.
