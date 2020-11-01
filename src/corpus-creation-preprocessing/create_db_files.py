@@ -18,10 +18,10 @@ def indexPathTerm(words_file):
         path_to_id_dict = {filtered_paths[i]:i for i in range(len(filtered_paths))}
         id_to_path_dict = {i:filtered_paths[i] for i in range(len(filtered_paths))}
 
-        with open(paths_folder + "/" + prefix + '_path_to_id_dict.pkl', 'wb') as handle:
+        with open(paths_folder + "/" + prefix + '_p2i.pkl', 'wb') as handle:
             pickle.dump(path_to_id_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-        with open(paths_folder + "/" + prefix + '_id_to_path_dict.pkl', 'wb') as handle:
+        with open(paths_folder + "/" + prefix + '_i2p.pkl', 'wb') as handle:
             pickle.dump(id_to_path_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     with open(words_file, "r", encoding="utf-8") as terms:
@@ -30,10 +30,10 @@ def indexPathTerm(words_file):
         word_to_id_dict = {words[i]:i for i in range(len(words))}
         id_to_word_dict = {i:words[i] for i in range(len(words))}
 
-        with open(paths_folder + "/" + prefix + '_word_to_id_dict.pkl', 'wb') as handle:
+        with open(paths_folder + "/" + prefix + '_w2i.pkl', 'wb') as handle:
             pickle.dump(word_to_id_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-        with open(paths_folder + "/" + prefix + '_id_to_word_dict.pkl', 'wb') as handle:
+        with open(paths_folder + "/" + prefix + '_i2w.pkl', 'wb') as handle:
             pickle.dump(id_to_word_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)        
 
 
@@ -42,9 +42,9 @@ def getTripletIDFromDB(parsed_file):
     x = file.split("_")[-3]
     output_parsed = open(paths_folder + '/triplet_id_' + x, 'w+')
 
-    with open(paths_folder + "/" + prefix + '_word_to_id_dict.pkl', 'rb') as handle:
+    with open(paths_folder + "/" + prefix + '_w2i.pkl', 'rb') as handle:
         word_to_id_dict = pickle.load(handle)
-    with open(paths_folder + "/" + prefix + '_path_to_id_dict.pkl', 'rb') as handle:
+    with open(paths_folder + "/" + prefix + '_i2w.pkl', 'rb') as handle:
         path_to_id_dict = pickle.load(handle)
 
     with open(parsed_file) as parsed_inp:
@@ -100,7 +100,7 @@ def indexWordPairs(parsed_file):
             current =  pastkeys + ',' + current
         word_occurence_map[key] = current
     
-    with open(paths_folder + "/" + prefix + '_word_occurence_map.pkl', 'wb') as handle:
+    with open(paths_folder + "/" + prefix + '_relations.pkl', 'wb') as handle:
         pickle.dump(word_occurence_map, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 

@@ -201,10 +201,10 @@ def parseText(file, op, maxlen):
                         out.write("\n".join(allpaths) + "\n")
 
 
-splitFileName = sys.argv[1].split("_")
-# Input file
-file = "_".join(splitFileName[:-1]) + "_" + ("0" + splitFileName[-1] if len(splitFileName[-1]) == 1 else  splitFileName[-1])
+if __name__ == "__main__":
+    splitFileName = sys.argv[1].split("_")
+    # Input file
+    file = "_".join(splitFileName[:-1]) + "_" + ("0" + splitFileName[-1] if len(splitFileName[-1]) == 1 else  splitFileName[-1])
 
-parseText(file, sys.argv[1], MAX_PATH_LEN)
-print ("Done for", splitFileName, "for max len:", MAX_PATH_LEN)
-
+    parseText(file, sys.argv[1], MAX_PATH_LEN)
+    print ("Done for", splitFileName, "for max len:", MAX_PATH_LEN)

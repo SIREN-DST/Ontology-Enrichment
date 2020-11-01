@@ -13,7 +13,7 @@ config = configparser.ConfigParser()
 try:
     config.read('config.ini')
 except:
-    print ("ERROR: No config file. Create a new file called config.ini in root folder")
+    print ("ERROR: No config file. Create a new file called config.ini")
     exit()
 
 # Folder for storing all input & output files

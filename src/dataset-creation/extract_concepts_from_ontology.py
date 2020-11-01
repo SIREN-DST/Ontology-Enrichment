@@ -16,7 +16,7 @@ try:
     # Read config file
     config.read(os.path.abspath('../../config.ini'))
 except:
-    print ("ERROR: No config file. Create a new file called config.ini in root folder")
+    print ("ERROR: No config file. Create a new file called config.ini")
     exit()
 
 try:
