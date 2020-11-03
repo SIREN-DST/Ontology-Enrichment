@@ -1,4 +1,4 @@
-import pickle, sys, os, configparser, torch, random
+import pickle, os, configparser, torch, random
 import numpy as np
 from math import ceil
 from itertools import count

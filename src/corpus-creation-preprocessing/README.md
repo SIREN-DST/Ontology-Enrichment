@@ -13,7 +13,13 @@ We create our corpus by extracting all relevant articles corresponding to the te
 The extacted corpus is now preprocessed to generate dependency paths. At first, for every pair of noun chunks occuring together in a sentence, the dependency paths between them are extracted. Since this can lead to large number of paths, they are filtered by: 
 1. Path Length: only paths with length less than `max_path_length` are considered
 2. Frequency: only paths with frequency greater than `min_frequency` are considered
-Terms having these filtered paths between them are stored in a database in such a way that given a pair of terms, the database returns the filtered paths between them, if any.
+Terms having these filtered paths between them are stored in a database in such a way that given a pair of terms, the database returns the filtered paths between them, if any. 
+All in all, five pickle files, each containing a separate dictionary, are created:
+1. `<domain_name>_w2i.pkl`: Maps word occuring in corpus to unique ID
+2. `<domain_name>_i2w.pkl`: Maps ID back to word occuring in corpus
+3. `<domain_name>_p2i.pkl`: Maps (frequently occuring) path in corpus to unique ID
+4. `<domain_name>_i2p.pkl`: Maps ID back to (frequently occuring) path
+5. `<domain_name>_relations.pkl`: Maps a pair of terms to all paths occurring between them.
 
 ## How to run
 
