@@ -2,13 +2,13 @@
 
 ## About 
 
-![OntoEnricher Training Process Diagram](corpus-creation.jpg)
+![OntoEnricher Training Process Diagram](training.jpg)
 
 The process diagram for the training OntoEnricher is given above. Having obtained a tagged training dataset from DBPedia from the scripts in `dataset-creation` and a domain-specific corpus with preprocessed files from `corpus-creation-preprocessing`, the next stage involves training OntoEnricher to predict relation between concepts, based on the paths given in the corpus.
 
 Apart from these files, for terms present in dataset which do not have an exact match in the db files, we additionally also try to resolve these dataset terms to the closest word present in db files, if their similarity is more than `resolve_threshold`. This is done while training to improve model performance. However, sometimes finding closest word from a large corpus can be a time-consuming process. Since this resolution is done only once, during training, it can be worth the time cost to yield a better trained model, hence it is made available but this stage is entirely **optional** and decent results are expected without resolution as well.
 
-The architecture diagram of OntoEnricher is given over [here](corpus-creation.jpg).
+The architecture diagram of OntoEnricher is given over [here](Architecture.jpg).
 
 ## Running 
 

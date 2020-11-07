@@ -12,7 +12,7 @@ class OntoEnricher(nn.Module):
 
         self.EMBEDDING_DIM = np.array(emb_vals).shape[1]
         self.n_directions = 2
-        
+
         self.input_dim = POS_DIM + DEP_DIM + self.EMBEDDING_DIM + DIR_DIM
         self.output_dim = self.n_directions * HIDDEN_DIM * NUM_LAYERS + 2 * self.EMBEDDING_DIM
 

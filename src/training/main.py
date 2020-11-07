@@ -3,7 +3,6 @@ import numpy as np
 from math import ceil
 from itertools import count
 from collections import defaultdict
-import tensorflow as tf
 import tensorflow_hub as hub
 from sklearn.metrics import accuracy_score
 from preprocessing import *
@@ -16,7 +15,7 @@ except:
     print ("ERROR: No config file. Create a new file called config.ini")
     exit()
 
-def check_field(section, key, key_name, optional=False):
+def check_field(section, key, key_name, optional=False, ispath=False):
 	''' Checks config.ini for existence of config[section][key], and also whether
 	 that refers to a file that exists. Prints a Warning or Error accordingly
 	 Args:
@@ -44,21 +43,22 @@ def check_field(section, key, key_name, optional=False):
 			raise FileNotFoundError("No file found by the name of", config[section][key])
 
 # Domain of ontology. Used for naming purposes
-domain = check_field(config['DEFAULT']['domain'], "domain name")
+domain = check_field("DEFAULT", "domain", "domain name")
+output_folder = check_field('DEFAULT', 'output_folder', "Output Folder", False, True)
 
 # Datasets
-train_file = check_field('dataset', 'train_file', "training dataset")
-test_file = check_field('dataset', 'test_file', "DBPedia testing dataset", True)
-knocked_file = check_field('dataset', 'test_knocked', "Knocked-out dataset", True)
-output_folder = check_field('dataset', 'output_folder', "Output Folder")
+train_file = check_field('dataset', 'train_file', "training dataset", False, True)
+test_file = check_field('dataset', 'test_file', "DBPedia testing dataset", True, True)
+knocked_file = check_field('dataset', 'test_knocked', "Knocked-out dataset", True, True)
+
 
 # Preprocessing 
-word2id_db = load_db(check_field('preprocessing', 'word2id_db', "Word-to-id database"))
-id2word_db = load_db(check_field('preprocessing', 'id2word_db', "Id-to-word database"))
-path2id_db = load_db(check_field('preprocessing', 'path2id_db', "Path-to-id database"))
-id2path_db = load_db(check_field('preprocessing', 'id2path_db', "Id-to-path database"))
-relations_db = load_db(check_field('preprocessing', 'relations_db', "Relations database"))
-resolved_db = load_db(check_field('preprocessing', 'resolved_file', "Resolved file", True), False)
+word2id_db = load_db(check_field('preprocessing', 'word2id_db', "Word-to-id database", False, True))
+id2word_db = load_db(check_field('preprocessing', 'id2word_db', "Id-to-word database", False, True))
+path2id_db = load_db(check_field('preprocessing', 'path2id_db', "Path-to-id database", False, True))
+id2path_db = load_db(check_field('preprocessing', 'id2path_db', "Id-to-path database", False, True))
+relations_db = load_db(check_field('preprocessing', 'relations_db', "Relations database", False, True))
+resolved_db = load_db(check_field('preprocessing', 'resolved_file', "Resolved file", True, True), False)
 
 # Parameters
 resolve_threshold = float(check_field('parameters', 'resolve_threshold', "resolve threshold"))
@@ -73,6 +73,7 @@ weight_decay = float(check_field('parameters', 'weight_decay', "Weight Decay"))
 batch_size = int(check_field('parameters', 'batch_size', "Batch size"))
 
 model_file = output_folder + domain + "_model.pt"
+indexers_file = output_folder + domain + "_indexers.pkl"
 output_file_prefix = output_folder + domain + "_"
 
 failed, success = [], []
@@ -172,7 +173,7 @@ flatten = lambda l: [item for sublist in l for item in sublist]
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-model = OntoEnricher(emb_vals).to(device)
+model = OntoEnricher(emb_vals, pos_indexer, dep_indexer, dir_indexer).to(device)
 criterion = nn.NLLLoss()
 optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
 
@@ -221,6 +222,7 @@ print("Training Complete!")
 model_dict = model.state_dict()
 model_dict = {key: model_dict[key] for key in model_dict if key!="name_embeddings.weight"}
 torch.save(model_dict, model_file)
+pickle.dump([pos_indexer, dep_indexer, dir_indexer], open(indexers_file, "wb"))
 
 def test(nodes_test, paths_test, counts_test, targets_test, message):
     predictedLabels, trueLabels = [], []

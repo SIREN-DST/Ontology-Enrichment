@@ -27,9 +27,9 @@ def entity_to_id(db, entity, resolve=True):
     if entity_id:
         success.append(entity)
         return int(entity_id)
-    if not resolve:
+    if not resolve or not resolved_db:
         return -1
-    closest_entity = resolved.get(entity, "")
+    closest_entity = resolved_db.get(entity, "")
     if closest_entity and closest_entity[0] and float(closest_entity[1]) > resolve_threshold:
         success.append(entity)
         return int(db[closest_entity[0]])
