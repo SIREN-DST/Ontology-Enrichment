@@ -32,7 +32,7 @@ Run this command:
 where:
 
 1. `<wiki_dump>`: refers to the path to the Wikipedia dump file
-2. `<doc2vec_model>`: refers to the path to the doc2vec model used for similarity comparison. In our experiments, we use the [pretrained model](https://ibm.ent.box.com/s/9ebs3c759qqo1d8i7ed323i6shv2js7e) from the Associated Press News corpus.
+2. `<doc2vec_model>`: refers to the path to the binary file of the doc2vec model used for similarity comparison. In our experiments, we use the [pretrained model](https://ibm.ent.box.com/s/9ebs3c759qqo1d8i7ed323i6shv2js7e) from the Associated Press News corpus.
 3. `<terms_file>`: refers to the path containing the related terms file extracted from DBPedia
 4. `<threshold>`: refers to the doc2vec similarity threshold used for filtering articles. (value: 0.29 in our experiments)
 5. `<base_file>`: refers to the file against which doc2vec similarity is compared for every article. Should be present in .txt format. (For our experiments, we used `../../files/security.txt` , scraped from [Wikipedia](https://en.wikipedia.org/wiki/Information_security))
