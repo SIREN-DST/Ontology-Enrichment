@@ -18,18 +18,19 @@ except:
 
 # Folder for storing all input & output files
 files_path = os.path.abspath("../../files/") + "/"
-concepts_file = files_path + "concepts_" + domain + ".txt"
 
 try:
     # Domain of ontology. Used for naming purposes
-    domainName = config['DEFAULT']['domain']
+    domain = config['DEFAULT']['domain']
 except:
     print ("ERROR: No domain specified. Check config.ini")
     exit()
 
+
+concepts_file = files_path + "concepts_" + domain + ".txt"
 concepts = open(concepts_file, "r").read().split("\n")
 # Output file used for storing terms extracted from DBPedia
-terms_file = files_path + "dbpedia_terms_" + domainName + ".tsv"
+terms_file = files_path + "dbpedia_terms_" + domain + ".tsv"
 
 def extract_related_terms_from_DBPedia(termlist):
     # Obtain related terms such as hypernyms and hyponyms from DBPedia

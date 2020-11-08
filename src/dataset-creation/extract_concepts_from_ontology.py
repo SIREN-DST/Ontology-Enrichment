@@ -14,7 +14,7 @@ import configparser, os
 config = configparser.ConfigParser()
 try:
     # Read config file
-    config.read(os.path.abspath('../../config.ini'))
+    config.read(os.path.abspath('config.ini'))
 except:
     print ("ERROR: No config file. Create a new file called config.ini")
     exit()
@@ -22,7 +22,8 @@ except:
 try:
     # Ontologies to parse
     ontologies = config['dataset-creation']['ontologies'].split(", ")
-except:
+except Exception as e:
+    print (e)
     print ("ERROR: No ontology field specified. Check config.ini")
     exit()
 
