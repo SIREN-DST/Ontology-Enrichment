@@ -113,6 +113,7 @@ def parse_path(path):
 
 def parse_tuple(tup, resolve=True):
     '''Extracts paths between a pair of entities (both X->Y and Y->X)'''
+    global word2id_db
     x, y = [entity_to_id(word2id_db, elem, resolve) for elem in tup]
     paths_x, paths_y = list(extract_paths(relations_db,x,y).items()), list(extract_paths(relations_db,y,x).items())
     path_count_dict_x = { id_to_path(id2path_db, path).replace("X/", tup[0]+"/").replace("Y/", tup[1]+"/") : freq for (path, freq) in paths_x }

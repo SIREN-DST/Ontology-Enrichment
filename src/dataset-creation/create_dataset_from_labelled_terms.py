@@ -26,16 +26,18 @@ except:
     exit()
 
 try:
-    annotated_terms_name = os.path.abspath(config['dataset-creation']['annotated_terms_name']) + "/"
-except:
+    annotated_terms_name = os.path.abspath(config['dataset-creation']['annotated_file']) 
+except KeyError as e:
     print ("ERROR: No ontology field specified. Check config.ini")
     exit()
+except:
+    raise
 
 allLines = [line.split("\t") for line in open(annotated_terms_name, "r").read().split("\n")]
 def processString(ls):
     return [" ".join(string.lower().split("_")) for string in ls]
 
-relationLines = [processString(l[:2]) + l[-1].lower() for l in allLines]
+relationLines = [processString(l[:2]) + [l[-1].lower()] for l in allLines]
 
 def train_test_split(allRelations, noneStr):
     ratio = 0.1
@@ -59,8 +61,8 @@ def train_test_split(allRelations, noneStr):
 
     return (trainRelations, testRelations)
 
-dataset_folder = "mkdir " + os.path.abspath("../../files") + "/dataset/"
-process = subprocess.Popen(dataset_folder.split(), stdout=subprocess.PIPE)
+dataset_folder = os.path.abspath("../../files") + "/datasets/" + domainName + "/"
+process = subprocess.Popen(str("mkdir " + dataset_folder).split(), stdout=subprocess.PIPE)
 output, error = process.communicate()
 
 train, test = train_test_split(relationLines, "none")

@@ -5,8 +5,8 @@ from itertools import count
 from collections import defaultdict
 import tensorflow_hub as hub
 from sklearn.metrics import accuracy_score
-from preprocessing import *
 from model import *
+from preprocessing import *
 
 config = configparser.ConfigParser()
 try:
@@ -25,15 +25,18 @@ def check_field(section, key, key_name, optional=False, ispath=False):
 	- optional: Signifies whether presence of key in `config.ini` is optional or not
 	  '''
 	try:
-		field = os.path.abspath(config[section][key])
+            if not ispath:
+                field = config[section][key]
+            else:
+                field = os.path.abspath(config[section][key])
 	except:
-		if optional:
-			print ("WARNING: No " + key_name + " specified in config.ini")
-			return
-		else:
-		    raise KeyError("ERROR: No " + key_name + " specified. Check config.ini")
+            if optional:
+                print ("WARNING: No " + key_name + " specified in config.ini")
+                return
+            else:
+                raise KeyError("ERROR: No " + key_name + " specified. Check config.ini")
 
-	if os.path.exists(field):
+	if os.path.exists(field) or not ispath:
 	    return field
 	else:
 		if optional:
@@ -111,7 +114,7 @@ emb_vals = np.array(np.zeros((1, embeds.shape[1])).tolist() + embeds.tolist())
 rel_indexer_inv = {rel_indexer[key]: key for key in rel_indexer}
 
 def to_list(seq):
-	''' Converts list of tuples to list of lists '''
+    ''' Converts list of tuples to list of lists '''
     for item in seq:
         if isinstance(item, tuple):
             yield list(to_list(item))
@@ -121,7 +124,7 @@ def to_list(seq):
             yield item
 
 def pad_paths(paths, max_paths, max_edges):
-	''' Pads paths with `NULL_EDGE` to resolve uneven lengths and make a matrix '''
+    ''' Pads paths with `NULL_EDGE` to resolve uneven lengths and make a matrix '''
     paths_edgepadded = [[path + [NULL_EDGE for i in range(max_edges-len(path))]
         for path in element]
     for element in paths]
@@ -131,16 +134,16 @@ def pad_paths(paths, max_paths, max_edges):
     return np.array(paths_padded)
         
 def pad_counts(counts, max_paths):
-	''' Pads counts of paths with 0 for giving 0 count to paths with only `NULL_EDGE`'''
+    ''' Pads counts of paths with 0 for giving 0 count to paths with only `NULL_EDGE`'''
     return np.array([elem + [0 for i in range(max_paths - len(elem))] for elem in counts])
 
 def pad_edgecounts(edgecounts, max_paths):
-	''' Pads counts of edges with 1 for giving 1 count to `NULL_EDGE` (useful while packing)'''
+    ''' Pads counts of edges with 1 for giving 1 count to `NULL_EDGE` (useful while packing)'''
     return np.array([elem + [1 for i in range(max_paths - len(elem))] for elem in edgecounts])
 
 def calculate_recall(true, pred):
-	''' Calculates recall of enrichment process by finding 
-	accuracy score of relations with non-null labels'''
+    ''' Calculates recall of enrichment process by finding 
+    accuracy score of relations with non-null labels'''
     true_f, pred_f = [], []
     for i,elem in enumerate(true):
         if elem!=4:
@@ -149,8 +152,8 @@ def calculate_recall(true, pred):
     return accuracy_score(true_f, pred_f)
 
 def calculate_precision(true, pred):
-	''' Calculates precision of enrichment process by finding 
-	accuracy score of relations with non-null labels'''	
+    ''' Calculates precision of enrichment process by finding 
+    accuracy score of relations with non-null labels'''	
     true_f, pred_f = [], []
     for i,elem in enumerate(pred):
         if elem!=4:
@@ -268,7 +271,7 @@ def test(nodes_test, paths_test, counts_test, targets_test, message):
 
 model.eval()
 with torch.no_grad():
-	if nodes_test:
+    if nodes_test:
     	test(nodes_test, paths_test, counts_test, targets_test, "dbpedia")
     if nodes_knocked:
     	test(nodes_knocked, paths_knocked, counts_knocked, targets_knocked, "knocked-out")

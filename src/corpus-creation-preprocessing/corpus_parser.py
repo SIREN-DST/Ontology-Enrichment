@@ -181,7 +181,7 @@ def getDependencyPaths(sentence, nlp, sentenceNounChunks, maxlen):
 
 def parseText(file, op, maxlen):
     # The main function to parse text and extract dependency paths
-    nlp = spacy.load('en_core_web_sm')
+    nlp = spacy.load('en_core_web_lg')
     nlp.add_pipe(nlp.create_pipe('sentencizer'), before="parser")
     op = op + "_" + str(maxlen) + "_parsed" 
     with open(file, "r") as inp:
