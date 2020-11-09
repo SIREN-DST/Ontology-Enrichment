@@ -82,25 +82,25 @@ def preprocess_test(test_dataset, dynamic_db_creation, file):
     return paths, counts, nodes
 
 # Domain of ontology. Used for naming purposes
-domain = check_field("DEFAULT", "domain", "domain name")
-output_folder = check_field('DEFAULT', 'output_folder', "Output Folder", False, True) + "/"
+domain = check_field(config, "DEFAULT", "domain", "domain name")
+output_folder = check_field(config, 'DEFAULT', 'output_folder', "Output Folder", False, True) + "/"
 
 # Datasets
-webpage_dir = check_field('dataset', 'webpages_dir', "Webpage directory") + "/"
+webpage_dir = check_field(config, 'dataset', 'webpages_dir', "Webpage directory") + "/"
 
 # Filtering parameters
-domain_keyword = check_field('filtering', 'domain_keyword', "Domain Keyword")
-domain_threshold = float(check_field('filtering', 'domain_threshold', "Domain Threshold"))
-inter_threshold = float(check_field('filtering', 'inter_threshold', "Inter Threshold"))
+domain_keyword = check_field(config, 'filtering', 'domain_keyword', "Domain Keyword")
+domain_threshold = float(check_field(config, 'filtering', 'domain_threshold', "Domain Threshold"))
+inter_threshold = float(check_field(config, 'filtering', 'inter_threshold', "Inter Threshold"))
 
 # Preprocessing 
-word2id_db = load_db(check_field('preprocessing', 'word2id_db', "Word-to-id database", False, True))
-id2word_db = load_db(check_field('preprocessing', 'id2word_db', "Id-to-word database", False, True))
-path2id_db = load_db(check_field('preprocessing', 'path2id_db', "Path-to-id database", False, True))
-id2path_db = load_db(check_field('preprocessing', 'id2path_db', "Id-to-path database", False, True))
-relations_db = load_db(check_field('preprocessing', 'relations_db', "Relations database", False, True))
-resolved_db = load_db(check_field('preprocessing', 'resolved_file', "Resolved file", True, True), False)
-dynamic_db_creation = False if check_field('preprocessing', 'dynamic_db_creation', "Dynamic DB creation") == "False" else True
+word2id_db = load_db(check_field(config, 'preprocessing', 'word2id_db', "Word-to-id database", False, True))
+id2word_db = load_db(check_field(config, 'preprocessing', 'id2word_db', "Id-to-word database", False, True))
+path2id_db = load_db(check_field(config, 'preprocessing', 'path2id_db', "Path-to-id database", False, True))
+id2path_db = load_db(check_field(config, 'preprocessing', 'id2path_db', "Id-to-path database", False, True))
+relations_db = load_db(check_field(config, 'preprocessing', 'relations_db', "Relations database", False, True))
+resolved_db = load_db(check_field(config, 'preprocessing', 'resolved_file', "Resolved file", True, True), False)
+dynamic_db_creation = False if check_field(config, 'preprocessing', 'dynamic_db_creation', "Dynamic DB creation") == "False" else True
 
 # Parameters
 resolve_threshold = float(check_field(config, 'parameters', 'resolve_threshold', "resolve threshold"))
