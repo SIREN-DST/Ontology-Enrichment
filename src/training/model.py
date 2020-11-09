@@ -1,3 +1,4 @@
+import torch
 import torch.optim as optim
 import torch.nn as nn
 import numpy as np
@@ -15,6 +16,8 @@ class OntoEnricher(nn.Module):
 
         self.EMBEDDING_DIM = np.array(emb_vals).shape[1]
         self.n_directions = 2
+        self.HIDDEN_DIM = HIDDEN_DIM
+        self.NUM_LAYERS = NUM_LAYERS
 
         self.input_dim = POS_DIM + DEP_DIM + self.EMBEDDING_DIM + DIR_DIM
         self.output_dim = self.n_directions * HIDDEN_DIM * NUM_LAYERS + 2 * self.EMBEDDING_DIM
@@ -66,7 +69,7 @@ class OntoEnricher(nn.Module):
         paths_packed = pack_padded_sequence(paths_embed, torch.flatten(edgecounts), batch_first=True, enforce_sorted=False)
         _, (hidden_state, _) = self.lstm(paths_packed)
         paths_output = self.hidden_dropout(hidden_state).permute(1,2,0)
-        paths_output_reshaped = paths_output.reshape(-1, max_paths, HIDDEN_DIM*NUM_LAYERS*self.n_directions)
+        paths_output_reshaped = paths_output.reshape(-1, max_paths, self.HIDDEN_DIM*self.NUM_LAYERS*self.n_directions)
         # paths_output has dim (batch_size, max_paths, HIDDEN_DIM, NUM_LAYERS*self.n_directions)
 
         paths_weighted = torch.bmm(paths_output_reshaped.permute(0,2,1), counts.unsqueeze(-1)).squeeze(-1)

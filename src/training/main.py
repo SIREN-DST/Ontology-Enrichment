@@ -270,12 +270,13 @@ torch.save(model_dict, model_file)
 pickle.dump([pos_indexer, dep_indexer, dir_indexer], open(indexers_file, "wb"))
 
 def test(nodes_test, paths_test, counts_test, targets_test, message):
+    global batch_size
+
     predictedLabels, trueLabels = [], []
     results = []
     num_edges_all = [[len(path) for path in element] for element in paths_test]
     max_edges = max(flatten(num_edges_all))
     max_paths = max([len(elem) for elem in counts_test])
-
     dataset_size = len(nodes_test)
     batch_size = min(batch_size, dataset_size)
     num_batches = int(ceil(dataset_size/batch_size))
