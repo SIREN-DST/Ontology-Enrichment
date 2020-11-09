@@ -121,6 +121,8 @@ indexers_file = output_folder + domain + "_indexers.pkl"
 output_file_prefix = output_folder + domain + "_"
 
 failed, success = [], []
+relations = ["hypernym", "hyponym", "concept", "instance", "none"]
+NUM_RELATIONS = len(relations)
 
 emb_indexer, pos_indexer, dep_indexer, dir_indexer = [defaultdict(count(0).__next__) for i in range(4)]
 unk_emb, unk_pos, unk_dep, unk_dir = emb_indexer["<UNK>"], pos_indexer["<UNK>"], dep_indexer["<UNK>"], dir_indexer["<UNK>"]
@@ -200,6 +202,9 @@ def calculate_precision(true, pred):
             true_f.append(true[i])
     return accuracy_score(true_f, pred_f)
 
+POS_DIM = 4
+DEP_DIM = 6
+DIR_DIM = 3
 NUM_RELATIONS = len(rel_indexer)
 NULL_EDGE = [0, 0, 0, 0]
 
@@ -212,7 +217,8 @@ flatten = lambda l: [item for sublist in l for item in sublist]
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-model = OntoEnricher(emb_vals).to(device)
+params = [POS_DIM, DEP_DIM, DIR_DIM, NUM_RELATIONS, emb_dropout, hidden_dropout, NUM_LAYERS, HIDDEN_DIM, LAYER1_DIM]
+model = OntoEnricher(emb_vals, pos_indexer, dep_indexer, dir_indexer, params).to(device)
 criterion = nn.NLLLoss()
 optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
 

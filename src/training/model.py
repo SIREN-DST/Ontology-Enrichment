@@ -4,17 +4,14 @@ import numpy as np
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pack_padded_sequence
 
-relations = ["hypernym", "hyponym", "concept", "instance", "none"]
-NUM_RELATIONS = len(relations)
-POS_DIM = 4
-DEP_DIM = 6
-DIR_DIM = 3
-
 class OntoEnricher(nn.Module):
 
-    def __init__(self, emb_vals):
+    def __init__(self, emb_vals, pos_indexer, dep_indexer, dir_indexer, params):
         
         super(OntoEnricher, self).__init__()
+
+        POS_DIM, DEP_DIM, DIR_DIM, NUM_RELATIONS, emb_dropout, \
+        hidden_dropout, NUM_LAYERS, HIDDEN_DIM, LAYER1_DIM = params
 
         self.EMBEDDING_DIM = np.array(emb_vals).shape[1]
         self.n_directions = 2
@@ -28,7 +25,6 @@ class OntoEnricher(nn.Module):
 
         self.emb_dropout = nn.Dropout(p=emb_dropout)
         self.hidden_dropout = nn.Dropout(p=hidden_dropout)
-        self.output_dropout = nn.Dropout(p=output_dropout)
         self.log_softmax = nn.LogSoftmax()
         
         self.name_embeddings = nn.Embedding(len(emb_vals), self.EMBEDDING_DIM)
