@@ -4,6 +4,12 @@ import numpy as np
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pack_padded_sequence
 
+relations = ["hypernym", "hyponym", "concept", "instance", "none"]
+NUM_RELATIONS = len(relations)
+POS_DIM = 4
+DEP_DIM = 6
+DIR_DIM = 3
+
 class OntoEnricher(nn.Module):
 
     def __init__(self, emb_vals):

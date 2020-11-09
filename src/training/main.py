@@ -121,8 +121,6 @@ indexers_file = output_folder + domain + "_indexers.pkl"
 output_file_prefix = output_folder + domain + "_"
 
 failed, success = [], []
-relations = ["hypernym", "hyponym", "concept", "instance", "none"]
-NUM_RELATIONS = len(relations)
 
 emb_indexer, pos_indexer, dep_indexer, dir_indexer = [defaultdict(count(0).__next__) for i in range(4)]
 unk_emb, unk_pos, unk_dep, unk_dir = emb_indexer["<UNK>"], pos_indexer["<UNK>"], dep_indexer["<UNK>"], dir_indexer["<UNK>"]
@@ -202,9 +200,6 @@ def calculate_precision(true, pred):
             true_f.append(true[i])
     return accuracy_score(true_f, pred_f)
 
-POS_DIM = 4
-DEP_DIM = 6
-DIR_DIM = 3
 NUM_RELATIONS = len(rel_indexer)
 NULL_EDGE = [0, 0, 0, 0]
 
