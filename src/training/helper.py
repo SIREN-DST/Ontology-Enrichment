@@ -9,35 +9,6 @@ NULL_PATH = ((0, 0, 0, 0),)
 
 arrow_heads = {">": "up", "<":"down"}
 
-
-def id_to_entity(db, entity_id):
-    ''' Lookup db for entity using ID '''
-    entity = db[str(entity_id)]
-    return entity
-
-def id_to_path(db, entity_id):
-    ''' Lookup db for path using ID '''
-    entity = db[str(entity_id)]
-    entity = "/".join(["*##*".join(e.split("_", 1)) for e in entity.split("/")])
-    return entity
-
-def entity_to_id(db, entity, resolved_db, resolve=True):
-    ''' Lookup db for entity ID. In case of missing word, 
-    if `resolve_db` is present, use it otherwise return None '''
-    global success, failed
-    entity_id = db.get(entity)
-    if entity_id:
-        success.append(entity)
-        return int(entity_id)
-    if not resolve or not resolved_db:
-        return -1
-    closest_entity = resolved_db.get(entity, "")
-    if closest_entity and closest_entity[0] and float(closest_entity[1]) > resolve_threshold:
-        success.append(entity)
-        return int(db[closest_entity[0]])
-    failed.append(entity)
-    return -1
-
 def extract_paths(db, x, y):
     '''Extract paths between `x` and `y` from `db` and serialize it into a dictionary'''
     key = (str(x) + '###' + str(y))

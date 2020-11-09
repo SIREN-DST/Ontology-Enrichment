@@ -15,6 +15,34 @@ except:
     print ("ERROR: No config file. Create a new file called config.ini")
     exit()
 
+def id_to_entity(db, entity_id):
+    ''' Lookup db for entity using ID '''
+    entity = db[str(entity_id)]
+    return entity
+
+def id_to_path(db, entity_id):
+    ''' Lookup db for path using ID '''
+    entity = db[str(entity_id)]
+    entity = "/".join(["*##*".join(e.split("_", 1)) for e in entity.split("/")])
+    return entity
+
+def entity_to_id(db, entity):
+    ''' Lookup db for entity ID. In case of missing word, 
+    if `resolve_db` is present, use it otherwise return None '''
+    global success, failed
+    entity_id = db.get(entity)
+    if entity_id:
+        success.append(entity)
+        return int(entity_id)
+    if not resolve or not resolved_db:
+        return -1
+    closest_entity = resolved_db.get(entity, "")
+    if closest_entity and closest_entity[0] and float(closest_entity[1]) > resolve_threshold:
+        success.append(entity)
+        return int(db[closest_entity[0]])
+    failed.append(entity)
+    return -1
+
 def parse_path(path):
     '''Parses a path by: 
     1. Serializing it by converting into a sequence of edges.
@@ -37,7 +65,7 @@ def parse_path(path):
 def parse_tuple(tup):
     '''Extracts paths between a pair of entities (both X->Y and Y->X)'''
     global word2id_db
-    x, y = [entity_to_id(word2id_db, elem, resolved_db) for elem in tup]
+    x, y = [entity_to_id(word2id_db, elem) for elem in tup]
     paths_x, paths_y = list(extract_paths(relations_db,x,y).items()), list(extract_paths(relations_db,y,x).items())
     path_count_dict_x = { id_to_path(id2path_db, path).replace("X/", tup[0]+"/").replace("Y/", tup[1]+"/") : freq for (path, freq) in paths_x }
     path_count_dict_y = { id_to_path(id2path_db, path).replace("Y/", tup[0]+"/").replace("X/", tup[1]+"/") : freq for (path, freq) in paths_y }
