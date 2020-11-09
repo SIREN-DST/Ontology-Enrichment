@@ -6,7 +6,7 @@ from collections import defaultdict
 import tensorflow_hub as hub
 from sklearn.metrics import accuracy_score
 from model import *
-from preprocessing import *
+from helper import *
 
 config = configparser.ConfigParser()
 try:
@@ -34,22 +34,22 @@ def parse_path(path):
             return None
     return tuple(parsed_path)
 
-def parse_tuple(tup, resolve=True):
+def parse_tuple(tup):
     '''Extracts paths between a pair of entities (both X->Y and Y->X)'''
     global word2id_db
-    x, y = [entity_to_id(word2id_db, elem, resolve) for elem in tup]
+    x, y = [entity_to_id(word2id_db, elem, resolved_db) for elem in tup]
     paths_x, paths_y = list(extract_paths(relations_db,x,y).items()), list(extract_paths(relations_db,y,x).items())
     path_count_dict_x = { id_to_path(id2path_db, path).replace("X/", tup[0]+"/").replace("Y/", tup[1]+"/") : freq for (path, freq) in paths_x }
     path_count_dict_y = { id_to_path(id2path_db, path).replace("Y/", tup[0]+"/").replace("X/", tup[1]+"/") : freq for (path, freq) in paths_y }
     path_count_dict = {**path_count_dict_x, **path_count_dict_y}
     return path_count_dict
 
-def parse_dataset(dataset, resolve=True):
+def parse_dataset(dataset):
     '''Main function used to parse dataset. For every pair of entity, it returns
     a) the (serialized and indexed) paths between them 
     b) the count (or frequency of occurence) of each of these paths
     c) the target label'''
-    parsed_dicts = [parse_tuple(tup, resolve) for tup in dataset.keys()]
+    parsed_dicts = [parse_tuple(tup) for tup in dataset.keys()]
     parsed_dicts = [{ parse_path(path) : path_count_dict[path] for path in path_count_dict } for path_count_dict in parsed_dicts]
     paths = [{ path : path_count_dict[path] for path in path_count_dict if path} for path_count_dict in parsed_dicts]
     paths = [{NULL_PATH: 1} if not path_list else path_list for i, path_list in enumerate(paths)]

@@ -1,3 +1,5 @@
+'''Contains helper functions'''
+
 import pickle, os
 import tensorflow_hub as hub
 
@@ -19,7 +21,7 @@ def id_to_path(db, entity_id):
     entity = "/".join(["*##*".join(e.split("_", 1)) for e in entity.split("/")])
     return entity
 
-def entity_to_id(db, entity, resolve=True):
+def entity_to_id(db, entity, resolved_db, resolve=True):
     ''' Lookup db for entity ID. In case of missing word, 
     if `resolve_db` is present, use it otherwise return None '''
     global success, failed
