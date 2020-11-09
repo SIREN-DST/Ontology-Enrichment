@@ -88,7 +88,7 @@ def parse_dataset(dataset):
 
 # Domain of ontology. Used for naming purposes
 domain = check_field(config, "DEFAULT", "domain", "domain name")
-output_folder = check_field(config, 'DEFAULT', 'output_folder', "Output Folder", False, True)
+output_folder = check_field(config, 'DEFAULT', 'output_folder', "Output Folder", False, True) + "/"
 
 # Datasets
 train_file = check_field(config, 'dataset', 'train_file', "training dataset", False, True)
@@ -153,16 +153,6 @@ embeds = extractUSEEmbeddings(list(emb_indexer.keys())[1:])
 emb_vals = np.array(np.zeros((1, embeds.shape[1])).tolist() + embeds.tolist())
 
 rel_indexer_inv = {rel_indexer[key]: key for key in rel_indexer}
-
-def to_list(seq):
-    ''' Converts list of tuples to list of lists '''
-    for item in seq:
-        if isinstance(item, tuple):
-            yield list(to_list(item))
-        elif isinstance(item, list):
-            yield [list(to_list(elem)) for elem in item]
-        else:
-            yield item
 
 def pad_paths(paths, max_paths, max_edges):
     ''' Pads paths with `NULL_EDGE` to resolve uneven lengths and make a matrix '''

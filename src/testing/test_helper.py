@@ -5,7 +5,7 @@ sys.path.insert(1, os.path.abspath('../corpus-creation-preprocessing/'))
 sys.path.insert(1, os.path.abspath('../training/'))
 
 from corpus_parser import *
-from preprocessing import *
+from helper import *
 
 def cos_sim(a,b):
     # Returns cosine similarity of two vectors
@@ -24,22 +24,6 @@ def clean_noun_chunk(noun_chunks):
             np_filt = np_filt.replace("(", "")
         all_parsed_chunks.append(np_filt)
     return list(set(all_parsed_chunks))
-
-def to_tuple(seq):
-    ''' Converts nested lists into nested tuples '''
-    for item in seq:
-        if isinstance(item, list):
-            yield tuple(to_tuple(item))
-        else:
-            yield item
-
-def to_list(seq):
-    ''' Converts nested tuples into nested lists '''
-    for item in seq:
-        if isinstance(item, tuple):
-            yield list(to_list(item))
-        else:
-            yield item
 
 def parse_path(path):
     '''Parses a path by: 
@@ -82,7 +66,7 @@ def parse_dataset_dynamic(dataset, instances_db, resolve=True):
     parsed_dicts = [parse_test_tuple(instances_db, tup) for tup in dataset]
     parsed_dicts = [{ parse_path(path) : path_count_dict[path] for path in path_count_dict } for path_count_dict in parsed_dicts]
     paths = [{ path : path_count_dict[path] for path in path_count_dict if path} for path_count_dict in parsed_dicts]
-    paths = [{NULL_PATH: 1} if not path_list else path_list for i, path_list in enumerate(paths)]
+    paths = [{NULL_EDGE: 1} if not path_list else path_list for i, path_list in enumerate(paths)]
     counts = [list(path_dict.values()) for path_dict in paths]
     paths = [list(path_dict.keys()) for path_dict in paths]
     return list(to_list_mixed(paths)), counts
@@ -94,7 +78,7 @@ def parse_dataset(dataset, resolve=True):
     parsed_dicts = [parse_tuple(tup, resolve) for tup in dataset]
     parsed_dicts = [{ parse_path(path) : path_count_dict[path] for path in path_count_dict } for path_count_dict in parsed_dicts]
     paths = [{ path : path_count_dict[path] for path in path_count_dict if path} for path_count_dict in parsed_dicts]
-    paths = [{NULL_PATH: 1} if not path_list else path_list for i, path_list in enumerate(paths)]
+    paths = [{NULL_EDGE: 1} if not path_list else path_list for i, path_list in enumerate(paths)]
     counts = [list(path_dict.values()) for path_dict in paths]
     paths = [list(path_dict.keys()) for path_dict in paths]
     return list(to_list_mixed(paths)), counts
@@ -108,39 +92,3 @@ def get(key, dictionary):
         print (key)
         dictionary_lower = {elem.lower(): dictionary[elem] for elem in dictionary}
         return dictionary_lower[key.lower()]
-
-def preprocess_test(test_dataset, dynamic_db_creation, file):
-    ''' Main function to preprocess test data. `dynamic_db_creation`
-    defines whether to use preprocessed relations db or dynamically 
-    create a new one by extracting paths from webpage. '''
-    resolve = True if resolved_db else False
-    if not dynamic_db_creation:
-        paths, counts = parse_dataset(test_dataset, resolve)
-        nodes = [[emb_indexer[tup[0]], emb_indexer[tup[1]]] for tup in test_dataset]
-    else:
-        doc = open(file).read()
-        all_nounchunks = list(nlp(doc).noun_chunks).copy()
-
-        sentences = [list(nlp(nlp(sent.text)._.coref_resolved.replace("\n", " ").replace("  ", " ")).sents)[0]
-                     for sent in nlp(doc).sents]
-        # [preprocess(nlp(para).noun_chunks) for para in paras]
-        all_deps = []
-        instances_db = {}
-        for sentence in sentences:
-            noun_chunks = [n for n in all_nounchunks if sentence.start <= n.start < n.end - 1 < sentence.end]
-            noun_chunks = list(nlp(sentence.text).noun_chunks)
-            dependencies = getDependencyPaths(sentence, nlp, noun_chunks, 10)
-            for dep in dependencies:
-                if not dep:
-                    continue
-                key = tuple([preprocess_word(nlp(word)) for word in dep[:2]])
-                path = "/".join(["*##*".join(e.split("_", 1)) for e in dep[-1].split("/")])
-                if key not in instances_db:
-                    instances_db[key] = [path]
-                else:
-                    instances_db[key].append(path)
-        instances_db = {key: Counter(instances_db[key]) for key in instances_db}
-
-        paths, counts = parse_dataset_dynamic(test_dataset, instances_db, resolve)
-        nodes = [[emb_indexer[tup[0]], emb_indexer[tup[1]]] for tup in test_dataset]
-    return paths, counts, nodes
