@@ -45,27 +45,6 @@ def extract_paths(db, x, y):
     except Exception as e:
         return {}
 
-def preprocess_db(db):
-    '''Decodes db keys and values to utf-8'''
-    final_db = {}
-    for key in db:
-        try:
-            new_key = key.decode("utf-8")
-        except:
-            new_key = key
-        try:
-            new_val = db[key].decode("utf-8")
-        except:
-            new_val = db[key]
-        final_db[new_key] = new_val
-    return final_db
-
-def load_db(db_name, encoded=True):
-    ''' Loads pickle file. If `encoded`, it also decodes them. '''
-    if not db_name:
-        return
-    return preprocess_db(pickle.load(open(db_name, "rb")))
-
 def extractUSEEmbeddings(words):
     word_embeddings = USE_model(words)
     return word_embeddings.numpy()

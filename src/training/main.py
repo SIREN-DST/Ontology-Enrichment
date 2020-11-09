@@ -6,7 +6,6 @@ from collections import defaultdict
 import tensorflow_hub as hub
 from sklearn.metrics import accuracy_score
 from model import *
-from preprocessing import *
 
 config = configparser.ConfigParser()
 try:
@@ -45,6 +44,27 @@ def check_field(section, key, key_name, optional=False, ispath=False):
 		else:
 			raise FileNotFoundError("No file found by the name of", config[section][key])
 
+def preprocess_db(db):
+    '''Decodes db keys and values to utf-8'''
+    final_db = {}
+    for key in db:
+        try:
+            new_key = key.decode("utf-8")
+        except:
+            new_key = key
+        try:
+            new_val = db[key].decode("utf-8")
+        except:
+            new_val = db[key]
+        final_db[new_key] = new_val
+    return final_db
+
+def load_db(db_name, encoded=True):
+    ''' Loads pickle file. If `encoded`, it also decodes them. '''
+    if not db_name:
+        return
+    return preprocess_db(pickle.load(open(db_name, "rb")))
+
 # Domain of ontology. Used for naming purposes
 domain = check_field("DEFAULT", "domain", "domain name")
 output_folder = check_field('DEFAULT', 'output_folder', "Output Folder", False, True)
@@ -82,6 +102,8 @@ output_file_prefix = output_folder + domain + "_"
 failed, success = [], []
 relations = ["hypernym", "hyponym", "concept", "instance", "none"]
 NUM_RELATIONS = len(relations)
+
+from preprocessing import *
 
 emb_indexer, pos_indexer, dep_indexer, dir_indexer = [defaultdict(count(0).__next__) for i in range(4)]
 unk_emb, unk_pos, unk_dep, unk_dir = emb_indexer["<UNK>"], pos_indexer["<UNK>"], dep_indexer["<UNK>"], dir_indexer["<UNK>"]
