@@ -34,7 +34,7 @@ def entity_to_id(db, entity):
     if entity_id:
         success.append(entity)
         return int(entity_id)
-    if not resolve or not resolved_db:
+    if not resolved_db:
         return -1
     closest_entity = resolved_db.get(entity, "")
     if closest_entity and closest_entity[0] and float(closest_entity[1]) > resolve_threshold:
@@ -140,7 +140,7 @@ else:
 	test_dataset = {}
 	paths_test, counts_test, targets_test, nodes_test = [], [], [], []
 
-if test_knocked:
+if knocked_file:
 	test_knocked = {tuple(l.split("\t")[:2]): l.split("\t")[2] for l in open(knocked_file).read().split("\n")}
 	paths_knocked, counts_knocked, targets_knocked = parse_dataset(test_knocked)
 	nodes_knocked = [[emb_indexer[tup[0]], emb_indexer[tup[1]]] for tup in test_knocked]
@@ -217,7 +217,7 @@ flatten = lambda l: [item for sublist in l for item in sublist]
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-model = OntoEnricher(emb_vals, pos_indexer, dep_indexer, dir_indexer).to(device)
+model = OntoEnricher(emb_vals).to(device)
 criterion = nn.NLLLoss()
 optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
 
