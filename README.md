@@ -58,6 +58,25 @@ An LSTM-based model to extract concepts and relationships from a text corpus to 
 
   
 
-9.  The trained LSTM model is then used to predict the labels of the relations in the testing dataset. The non-None relations identified by the model are passed as input to the next stage of the pipeline, [OntoViewer](https://github.com/Remorax/SIREN-Research/tree/master/OntoViewer).
+9.  The trained Bidirectional LSTM model is then used to predict the labels of the relations in the testing dataset. The non-None relations identified by the model are passed as input to the next stage of the pipeline, [OntoViewer](https://github.com/Remorax/SIREN-Research/tree/master/OntoViewer).
+
+10. Hyper parameters used for training the model
+
+| Hyperparameters | Information Security | Pizza |
+|:-:|:-:|:-:|
+| Activation Function  | Log Softmax | Log Softmax |
+| Number of Layers  | 2  | 2 |
+| Hidden Dimension of LSTM  | 180 | 250 |
+| Input Dimension (2nd NN)  | 120  | 90 |
+| Embedding layer Dropout  | 0.35  | 0.35 |
+| Hidden layer Dropout  | 0.8  | 0.8 |
+| Hidden layer Dropout  | 0.8  | 0.8 |
+| Optimizer  | AdamW  | AdamW |
+| Loss function  | NLL Loss  | NLL Loss |
+| Epochs  | 200  | 200 |
+| Learning Rate  | 0.001  | 0.001 |
+| Weight Decay  | 0.001  | 0.001 |
+| Weight Initialization  | Xavier  | Xavier |
+
 
 Check their READMEs for more info about how to setup and run this project 
