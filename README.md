@@ -39,7 +39,7 @@ An LSTM-based model to extract concepts and relationships from a text corpus to 
 
   
 
-7.  The LSTM model uses the tagged training dataset and the corpus to learn the edge weights between every pair of noun phrases in a sentence. Edges that contain a hypernymy relationship get higher weights using path-based methods. The concepts get higher weights if they are related to Information Security domain, using distributional (word-embedding) methods. Thus we build an integrated (path-based + distributional) model that gives higher weights only to those relations that contain a hypernymy relationship AND are related to the information security domain.
+7.  The Bidirectional LSTM model uses the tagged training dataset and the corpus to learn the edge weights between every pair of noun phrases in a sentence. Edges that contain a hypernymy relationship get higher weights using path-based methods. The concepts get higher weights if they are related to Information Security domain, using distributional (word-embedding) methods. Thus we build an integrated (path-based + distributional) model that gives higher weights only to those relations that contain a hypernymy relationship AND are related to the information security domain.
     
 
   
@@ -54,9 +54,7 @@ An LSTM-based model to extract concepts and relationships from a text corpus to 
 	c.  After doing this for each paragraph, a testing dataset is constructed
     
 	d.  Optionally, depending on the size of the document (and consequently, the size of the testing dataset), a few relations are filtered out based on their similarity (or dissimilarity) to “cybersecurity”
-    
-
-  
+      
 
 9.  The trained Bidirectional LSTM model is then used to predict the labels of the relations in the testing dataset. The non-None relations identified by the model are passed as input to the next stage of the pipeline, [OntoViewer](https://github.com/Remorax/SIREN-Research/tree/master/OntoViewer).
 
